@@ -1,0 +1,7 @@
+= form_for :password_reset, class: 'p-t-15', url: password_resets_path do |f|
+  .row
+    .col-sm-12
+      .form-group.form-group-default
+        label Email
+        = f.email_field :email, class:"form-control", placeholder:"Enter your email address", required:true
+  = f.submit "Login", class:"btn btn-primary btn-cons m-t-10"

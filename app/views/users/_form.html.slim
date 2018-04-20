@@ -1,0 +1,39 @@
+= form_for @user, class: "p-t-15", id: "form-register" do |f|
+  .row
+    -if @user.errors.any?
+      #error_explanation
+        .alert.alert-danger.no-marg
+          | The form contains #{pluralize(@user.errors.count, "error")}.
+          ul
+            -@user.errors.full_messages.each do |msg|
+              li = msg 
+    .col-sm-6
+      .form-group.form-group-default
+        label First name
+        = f.text_field :first_name, class:"form-control", placeholder:"William", required:true
+    .col-sm-6
+      .form-group.form-group-default
+        label Last name
+        = f.text_field :last_name, class:"form-control", placeholder:"James", required:true
+  .row
+    .col-sm-12
+      .form-group.form-group-default
+        label Email
+        = f.email_field :email, class:"form-control", placeholder:"We will send you confirmation to activate the account", required:true
+  .row
+    .col-sm-12
+      .form-group.form-group-default
+        label Password
+        = f.password_field :password, class:"form-control", placeholder:"Minimum of 6 characters", required:true
+  .row
+    .col-sm-12
+      .form-group.form-group-default
+        label Confirm Password
+        =f.password_field :password_confirmation, class:"form-control", placeholder:"Minimum of 6 characters", required:true
+  = f.hidden_field :invitation_id
+  = f.submit "Create new account", class:"btn btn-primary btn-cons m-t-10" 
+  hr
+  p Already have an account? #{link_to "Login now", login_path}
+  p Forgot your password? #{link_to "Reset Password", new_password_reset_path}
+
+= javascript_include_tag "password_confirmation"

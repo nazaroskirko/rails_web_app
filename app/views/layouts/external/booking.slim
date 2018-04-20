@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title = full_title(yield :title)
+    = render "layouts/meta_tags"
+    / = stylesheet_link_tag 'application', media: 'all' 
+    = render "layouts/rails_default"
+    = render "layouts/shim"
+  	= render "layouts/external_fonts"
+    - if Rails.env.production?
+      -render "layouts/analytics_scripts"
+  body class="#{yield :class if :class}"
+    div.container
+      = render 'layouts/external/flash_messages'
+      = yield 
+  
+  footer
+    = javascript_include_tag 'external'
+    - if content_for? :javascript
+      = javascript_include_tag yield(:javascript)    
+    = javascript_include_tag 'stripe_handler'

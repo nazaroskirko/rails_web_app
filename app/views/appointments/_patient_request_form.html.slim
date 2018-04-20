@@ -1,0 +1,19 @@
+h5.text-primary Request an appointment
+=form_for @appointment, html: {class:"short-form"}, remote: true do |f|
+  .form-group.form-group-default-select2.form-group-default
+    =f.label :doctor_id, "Doctor"
+    =f.select :doctor_id, get_options(@selected_doctor_id, "doctors"), {}, {id: "doctor_ids", required:true}
+  .form-group.form-group-default
+    =f.label :date
+    =f.date_field :date, required:true
+  .form-group.form-group-default
+      =f.label :start, "Start Time"
+      =f.select :start, options_for_select(["",""]), {}, {id: "start_times", required:true}
+  .form-group.form-group-default
+      =f.label :end, "End Time"
+      =f.select :end, options_for_select(["",""]), {}, {id: "end_times", required:true}  
+  .form-group
+    =f.hidden_field :status, value: "requested"
+    =f.hidden_field :patient_id, value: @current_user.id
+    =f.submit "Add Appointment", class:"btn btn-primary block full"
+.sample

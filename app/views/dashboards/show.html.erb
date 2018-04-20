@@ -1,0 +1,42 @@
+<%= provide :class, "fixed-header dashboard" %>
+<%= render 'layouts/side_nav' %>
+<div class="page-container ">
+<%= render 'layouts/static_header' %>
+  <div class="page-content-wrapper ">
+    <div class="content sm-gutter">
+      <!-- START CONTAINER FLUID -->
+      <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %>
+        
+      </div>
+      <% end %>
+      <div class="container-fluid padding-25 sm-padding-10">
+        <!-- START ROW -->
+        <div class="row">
+          <%= render "upcoming_appointments" %>
+          <%= render "overdue_communications" %>
+          <% render "events_and_notifications" %>
+              <!-- Filler -->
+          <div class="visible-xlg col-xlg-3">
+            <div class="ar-2-3">
+
+            </div>
+          </div>
+        </div>
+        <!-- END ROW -->
+        <div class="row m-t-50">
+            <!-- <div class="col-md-4  m-t-50 col-xlg-4"> -->
+              <% render 'todo' %>
+            <!-- </div> -->
+            <div class="col-md-12" >
+              <%= render "users/show" %>
+            </div>
+        </div>
+      </div>
+      <!-- END CONTAINER FLUID -->
+    </div>
+    <%= render 'layouts/static_footer' %>
+    <!-- END COPYRIGHT -->
+  </div>
+<!-- END PAGE CONTENT WRAPPER -->
+</div>

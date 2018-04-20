@@ -1,0 +1,89 @@
+@mixin transition($duration)
+  -webkit-transition: $duration!important
+  -moz-transition: $duration!important
+  -ms-transition: $duration!important
+  -o-transition: $duration!important
+  transition: $duration!important
+
+@mixin transition-timing-function($timing)
+  -moz-transition-timing-function:    $timing!important
+  -o-transition-timing-function:      $timing!important
+  -webkit-transition-timing-function: $timing!important
+  transition-timing-function:         $timing!important
+
+#email-success, #email-failure, .confirm-relationship, .reconfirm-relationship
+  height: 0px
+  margin: 0px !important
+  padding: 0px !important
+  overflow: hidden
+  &.active
+    height: 170px!important
+    padding: 20px !important
+    margin: 10px 0 !important
+    @include transition(1s)
+    @include transition-timing-function(ease-in-out)
+.reconfirm-relationship
+  &.active
+    height: 280px !important
+    @include transition(1s)
+    @include transition-timing-function(ease-in-out)
+  .alert
+    margin-top: 0px
+
+#email-failure
+  &.active
+    height: 100px!important
+
+.short-form, .new-invite, .patient-form
+  height: 350px
+  &.waiting
+    height: 0px
+    overflow: hidden
+    padding: 0px
+    margin: 0px
+    @include transition(1s)
+    @include transition-timing-function(ease-in-out)
+
+.m-t-10
+  margin-top: 10px!important
+
+.patient-search
+  height: 0px
+  margin: 0px
+  padding: 0px
+  overflow: hidden
+  &.active
+    min-height: 300px
+    @include transition(1s)
+    @include transition-timing-function(ease-in-out)
+.restore-button
+  height: 0px
+  margin: 0px
+  padding: 0px
+  overflow: hidden
+  border: 0px
+  &.active
+    height: 40px
+    padding: 10px
+    margin: 10px 0 50px
+    border: 1px solid
+    @include transition(1s)
+    @include transition-timing-function(ease-in-out)
+
+.success-poppin
+  height: 0px
+  margin: 0px!important
+  padding: 0px!important
+  overflow: hidden
+  border: 0px
+  &.active
+    min-height: 60px
+    padding: 20px!important
+    margin: 20px 0!important
+    font-size: 20px
+#appointments_table_length
+  .input-sm
+    padding: 0 9px
+
+.additional-details
+  height: 150px!important

@@ -1,0 +1,27 @@
+<% provide(:title, 'Reset password') %>
+<div class="register-container full-height sm-p-t-30">
+  <div class="container-sm-height full-height">
+    <div class="row row-sm-height">
+      <div class="col-sm-12 col-sm-height col-middle">
+
+      <div class="row">
+        <%= image_tag "logo.png", alt: "logo", class:"sign-up-logo" %>
+      </div>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+
+          <%= hidden_field_tag :email, @user.email %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+          <%= f.submit "Update password", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>

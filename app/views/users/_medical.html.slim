@@ -1,0 +1,55 @@
+.col-md-12
+  H1 Medical History
+  =form_for [@user,@profile] , role:"form", remote: true do |f|
+    p 
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :exercise_frequency
+            =f.text_field :exercise_frequency, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :exercise_types
+            =f.text_field :exercise_types, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :allergies
+            =f.text_field :allergies, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :diagnoses, "Previous Diagnoses & Mental Health Treatment"
+            =f.text_field :diagnoses, class:"form-control", disabled: !current_user?(@user)
+            
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :past_medications
+            =f.text_field :past_medications, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :med_conditions, "Medical Conditions"
+            =f.text_field :med_conditions, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :surgeries, "Past Surgeries"
+              =f.text_field :surgeries, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :past_physicians
+              =f.text_field :past_physicians, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-12
+            .form-group.form-group-default
+              =f.label :dates_treate, "Dates of Treatments"
+              =f.text_field :dates_treate, class:"form-control", disabled: !current_user?(@user)
+    br
+    .row.clearfix.full-margin
+    -if current_user? @user
+      =f.submit "Save Changes", class:"btn btn-primary block full-width personal-submit" 

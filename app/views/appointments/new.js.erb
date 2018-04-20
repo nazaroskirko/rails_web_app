@@ -1,0 +1,104 @@
+
+<% if @scheduling_user == "doctor" %>
+$(".modal-body").html("<%= j render('appointments/short_form') %>").fadeIn(1500);
+$("#patient_ids").select2({val: "<%= '#{@selected_patient_id}' %>"});
+<% elsif @scheduling_user == "patient" %>
+$(".modal-body").html("<%= j render('appointments/patient_request_form') %>").fadeIn(1500);
+$("#doctor_ids").select2({val: "<%= '#{@selected_doctor_id}' %>"});
+<% end %>
+
+$("#status-options").select2({placeholder: "Select a type",});
+$("#start_times").select2({placeholder: "Select a time",});
+$("#cpt_codes").select2({
+  placeholder: "Select a CPT",
+  escapeMarkup: function(m) {
+                  return m;
+                }
+});
+$("#event_types").select2({placeholder: "Select event type",});
+$("#end_times").select2({placeholder: "Select a time",});
+$('.select2-container').addClass('full-width');
+$('#s2id_end_times').addClass('full-width');
+
+
+// $("#start_times").on("change", function(){
+//     start = parseInt($('#start_times').val());
+//     endHours = start + 100
+//     var select = document.getElementById("end_times");
+//     var option = document.createElement("option");
+//     option.text = "test";
+//     option.value = endHours.toString();
+//     select.appendChild(option);
+//     $("#end_times option[value="+ endHours.toString() + "]").prop('selected', true)
+//   });
+$("#appointment_date").on("change", function(){
+        var doc_id = $('#appointment_doctor_id').length ? $('#appointment_doctor_ids option:selected').val() : $('#appointment_doctor_id').val();
+        var response = $.ajax({
+        type: "GET",
+        url: "/days/check",
+        data:{date: $("#appointment_date").val(), doctor_id: doc_id},
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data){setStartTimes(data)},
+        error: function(xhr, status, response) {}
+      });
+    });
+
+$("#event_types").on("change", function(){
+  if ($('#event_types option:selected').val() == 'appointment') {
+    $('#patient_ids').prop("disabled", false);
+    $('#patient_ids').parent().addClass("required");
+    $('#cpt_codes').prop("disabled", false);
+  }else{
+    $('#patient_ids').prop("disabled", true);
+    $('#patient_ids').parent().removeClass("required");
+    $('#cpt_codes').prop("disabled", true);
+  }
+});
+
+$("#start_times").on("change", function(){
+      var doc_id = $('#appointment_doctor_id').length ? $('#appointment_doctor_ids option:selected').val() : $('#appointment_doctor_id').val();
+      var response = $.ajax({
+        type: "GET",
+        url: "/days/check_end",
+        data:{date: $("#appointment_date").val(), start: $("#start_times").val(), doctor_id: doc_id},
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(data){setEndTimes(data)},
+        error: function(xhr, status, response) {}
+      });
+    });
+
+function setStartTimes(json){
+  $('#start_times').html('');
+  $.each(json, function(index, element) {
+    var select = document.getElementById("start_times");
+    var option = document.createElement("option");
+    option.text = element;
+    option.value = index;
+    select.appendChild(option);
+});
+  $('.start-time #select2-chosen-3, .end-time #select2-chosen-3').html("");
+  $('.start-time #select2-chosen-4, .end-time #select2-chosen-4').html("");
+  $('#start_times').focusin();
+  $('#start_times').focusout();
+  $('#start_times').trigger("change");
+
+
+
+}
+function setEndTimes(json){
+  $('#end_times').html('');
+  $.each(json, function(index, element) {
+    var select = document.getElementById("end_times");
+    var option = document.createElement("option");
+    option.text = element;
+    option.value = index;
+    select.appendChild(option);
+});
+  $('.start-time #select2-chosen-4, .end-time #select2-chosen-4').html("");
+  $('#end_times').focusin();
+  $('#end_times').focusout();
+
+
+}

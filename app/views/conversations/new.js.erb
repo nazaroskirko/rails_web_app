@@ -1,0 +1,17 @@
+$(".new-email").html("<%= j render('conversations/new') %>").fadeIn(1500);
+if ($.Pages.isVisibleSm() || $.Pages.isVisibleXs()) {
+    $('.split-list').toggleClass('slideLeft');
+}
+$('.new-email').show();
+$('.actions, .no-result').hide();
+$('.email-content-wrapper').hide();
+
+// $('.email-composer').on('click', '.new-message', function() {
+//   alert('before');
+//   $.ajax({type: "POST",url: "/conversations/new",data:{sender: $('#conversation_sender_id').val(), recipient: $('#conversation_recipient_id').val()}});
+//   alert('after');
+// });
+
+setTimeout(function() {
+    $('.wysiwyg5').wysihtml5();
+}, 500);

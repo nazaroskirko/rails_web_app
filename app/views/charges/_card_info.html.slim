@@ -1,0 +1,35 @@
+= javascript_include_tag "https://js.stripe.com/v2/"
+
+.bg-master-light.padding-30.b-rad-lg
+  h2.pull-left.no-margin Credit Card
+  ul.list-unstyled.pull-right.list-inline.no-margin
+    li = image_tag "img/form-wizard/visa.png", alt: "logo", class: "brand", data: {src: image_path("img/form-wizard/visa.png"), "src-retina": image_path("img/form-wizard/visa2x.png")}, width: "51", height: "32"
+    li = image_tag "img/form-wizard/amex.png", alt: "logo", class: "brand", data: {src: image_path("img/form-wizard/amex.png"), "src-retina": image_path("img/form-wizard/amex2x.png")}, width: "51", height: "32"
+    li = image_tag "img/form-wizard/mastercard.png", alt: "logo", class: "brand", data: {src: image_path("img/form-wizard/mastercard.png"), "src-retina": image_path("img/form-wizard/mastercard2x.png")}, width: "51", height: "32" 
+  .clearfix
+  .form-group.form-group-default.required.m-t-25
+    =label_tag "Card holder's name"
+    =text_field_tag :name, nil, class:"form-control", placeholder:"Name on the card", data: {stripe: "name"}
+  .form-group.form-group-default.required
+    =label_tag "Card number"
+    =text_field_tag :card_number, nil, class:"form-control", placeholder:"8888-8888-8888-8888",data: {stripe: "number"}
+  .row
+    .col-md-8
+      .form-group.required
+        = label_tag "Expiration"
+        br
+        =select_tag :exp_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |name,i| ["#{i+1} - #{name}", i+1] }), include_blank: false, placeholder: "Month", class:"cs-select cs-skin-slide", data: {"init-plugin": "cs-select", stripe: "exp-month"}
+        =select_tag :exp_year, options_for_select((Date.today.year..(Date.today.year+10)).to_a),include_blank: false, placeholder: "Year", class:"cs-select cs-skin-slide", data: {"init-plugin": "cs-select", stripe: "exp-year"}
+    .col-md-2.col-md-offset-2
+      .form-group.required
+        = label_tag "CVV Code"
+        = text_field_tag :cvc, nil, class:"form-control", placeholder:"000", data: {stripe: "cvv"}
+  .actions.pull-right
+    = f.submit "#{external = true ? 'Schedule Appointment' : 'Add Payment Option'}", class: "btn btn-primary submit"
+  .clearfix
+
+
+
+
+        
+        

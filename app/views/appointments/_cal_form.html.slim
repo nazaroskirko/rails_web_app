@@ -1,0 +1,24 @@
+
+h5.text-primary Appointment Details
+=form_for @appointment, html: {class:"short-form"}, remote: true do |f|
+  .form-group.form-group-default-select2.form-group-default
+    =f.label :patient_id, "Patient"
+    =f.select :patient_id, get_options(@selected_patient_id, "patients"), {}, {id: "patient_ids", required:true}
+  .form-group.form-group-default
+    =f.label :date
+    =f.date_field :date, required:true
+  .form-group.form-group-default
+      =f.label :start, "Start Time"
+      =f.select :start, options_for_select(["",""]), {}, {id: "start_times", required:true}
+  .form-group.form-group-default
+      =f.label :end, "End Time"
+      =f.select :end, options_for_select(["",""]), {}, {id: "end_times", required:true}
+  .form-group.form-group-default.form-group-default-select2
+    =f.label :status, "Appointment Status"
+    =f.select :status, options_for_select(Appointment.statuses.map{ |a| [a[0].humanize, a[0]]}, "confirmed"), {}, {id: "status-options", required:true}
+  .form-group
+    =f.hidden_field :doctor_id, value: @current_user.id
+    =f.submit "Add Appointment", class:"btn btn-primary block full"
+br
+br
+=button_to "Add a new patient", patients_user_path(current_user), method: "get", class:"btn btn-primary"

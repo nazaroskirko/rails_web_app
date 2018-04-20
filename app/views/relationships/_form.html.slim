@@ -1,0 +1,15 @@
+=form_for @relationship, html: {class:"short-form waiting patient-form"}, remote: true do |f|
+  .form-group.form-group-default
+    =label_tag "patient_first_name", "Patient First Name"
+    =text_field_tag "patient_first_name", {}, disabled: true
+  .form-group.form-group-default
+    =label_tag "patient_last_name", "Patient Last Name"
+    =text_field_tag "patient_last_name", {}, disabled: true
+  .form-group.form-group-default
+    =label_tag "patient_email", "Patient Email"
+    =text_field_tag "patient_email", {},disabled: true
+  =f.hidden_field :patient_id
+  =f.hidden_field :doctor_id, value: current_user.id
+  =f.hidden_field :status, value: "doctor_requested"
+  .form-group
+    =f.submit "Add Appointment", class:"btn btn-primary block full"

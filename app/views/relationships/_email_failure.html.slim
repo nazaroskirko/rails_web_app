@@ -1,0 +1,15 @@
+#email-failure.alert.alert-info.right-modal-alert
+  p Send an email to invite your patient to the platform
+  p.next
+=form_for Invitation.new, html: {class:"short-form waiting new-invite", remote: true} do |f|
+  .form-group.form-group-default
+    =f.label :recipient_first_name, "First Name"
+    =f.text_field :recipient_first_name, placeholder: "Enter Patient First Name", required: true
+  .form-group.form-group-default
+    =f.label :recipient_last_name, "Last Name"
+    =f.text_field :recipient_last_name, placeholder: "Enter Patient Last Name", required: true
+  .form-group.form-group-default
+    =f.label :recipient_email, placeholder: "Email Address", required: true, disabled: true
+    =f.text_field :recipient_email
+  .form-group
+    =f.submit "Send Invitation", class: "btn btn-primary block full invitation"

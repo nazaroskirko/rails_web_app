@@ -1,0 +1,14 @@
+#documents.tab-pane.slide-left.padding-20 class="#{!current_user? @user ? "active" : ""}"
+  h1 Documents
+
+  = form_for @document do |f|
+    div
+      = f.label :image
+      = f.file_field :image
+      = f.hidden_field :user_id, value: @user.id
+    = f.submit 'submit this document'
+        
+  ul
+    - @documents.each do |doc|
+      a target="_blank" href=doc.image.url 
+        li= image_tag doc.image.url(:thumb)

@@ -1,0 +1,64 @@
+.col-md-12
+  H1 General Information
+  =form_for @user, role:"form", remote: true do |f|
+    =f.submit "Save Changes", class:"btn btn-primary block full-width profile-submit"
+    p 
+      b Name and Contact Information
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default.required
+            =f.label :first_name
+            =f.text_field :first_name, class:"form-control", required:true, disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default.required
+            =f.label :last_name
+            =f.text_field :last_name, class:"form-control", required:true, disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .form-group.form-group-default.required
+          =f.label :email
+          =f.email_field :email, class:"form-control", required:true, disabled: !current_user?(@user)
+    .form-group.form-group-default.input-group
+      span.input-group-addon
+        =select_tag "Country Code", options_for_select([["USA (+1)", "1"], ["UK (+44)", "44"]], "1"), class:"cs-select cs-skin-slide cs-transparent", data: {"init-plugin": "cs-select"}, disabled: !current_user?(@user)
+          
+      =f.label :primary_phone, "Phone Number"
+      =f.phone_field :primary_phone, class:"form-control us-phone", placeholder: "Phone Number", disabled: !current_user?(@user)
+    br
+    = f.fields_for :address, @address do |ff|
+      p 
+        b Billing Address
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-2
+            .form-group.form-group-default.required
+              =ff.label :number, "Street #"
+              =ff.text_field :number, class:"form-control", placeholder:"Street #", required: true, disabled: !current_user?(@user)
+          .col-sm-8
+            .form-group.form-group-default.required
+              =ff.label :street, "Street Name"
+              =ff.text_field :street, class:"form-control", placeholder:"Street Name", required: true, disabled: !current_user?(@user)
+          .col-sm-2
+            .form-group.form-group-default
+              =ff.label :apartment, "Apt #"
+              =ff.text_field :apartment, class:"form-control", placeholder:"Apt #", disabled: !current_user?(@user)
+        .row.clearfix.full-margin
+          .col-sm-6
+            .form-group.form-group-default
+              =ff.label :city, "City"
+              =ff.text_field :city, class:"form-control", placeholder:"City", disabled: !current_user?(@user)
+          .col-sm-2
+            .form-group.form-group-default.form-group-default-select2.user-select
+              =ff.label :state, "State"
+              =ff.select :state, options_for_select(Address::STATES, @address.state), {},{class:"cs-select cs-skin-slide cs-transparent", disabled: !current_user?(@user), data: {"init-plugin": "select2"}}
+          .col-sm-4
+            .form-group.form-group-default
+              =ff.label :zip, "Zip Code"
+              =ff.text_field :zip, class:"form-control zip", placeholder: "Zip Code", disabled: !current_user?(@user)
+    br
+    .row.clearfix.full-margin
+    =f.submit "Save Changes", class:"btn btn-primary block full-width profile-submit"    
+                
+      
+    

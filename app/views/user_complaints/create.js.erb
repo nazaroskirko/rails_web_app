@@ -1,0 +1,8 @@
+$('.complaints-submit').removeClass('active');
+$('.success-poppin').html('<b>Nicely Done!</b>  You have added some symptoms to your profile.')
+$('.success-poppin').addClass('active');
+setTimeout(function(){$('.success-poppin').removeClass('active');}, 4000)
+$('.complaint-list').html('<%=j @list.html_safe %>');
+$('#complaint input').on("change", function(){
+  $('.complaints-submit').addClass('active');
+});

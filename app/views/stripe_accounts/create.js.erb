@@ -1,0 +1,11 @@
+<% if @response %>
+$('.success-poppin').html('Great!  Now you just have to add some account details!');
+$('.success-poppin').addClass('active');
+setTimeout(function(){
+$('.success-poppin').removeClass('active');},4000);
+$('.account-details').addClass('active');
+$('.account-activation').removeClass('active');
+$('.verification').html('<%=j render "stripe_accounts/verification" %>');
+<% else %>
+alert('Oops! There was a mistake, please refresh the page and try again.');
+<% end %>

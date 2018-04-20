@@ -1,0 +1,13 @@
+<% if @response %>
+  entryComplete();
+  setTimeout(function() {
+      $('#patientForm').modal('toggle');
+  }, 500);
+  $('.success-poppin').addClass('active');
+  setTimeout(function(){
+  $('.success-poppin').removeClass('active');},
+  4000);
+
+<% else %>
+ entryFail();
+<% end %>

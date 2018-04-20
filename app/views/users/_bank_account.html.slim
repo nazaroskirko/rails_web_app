@@ -1,0 +1,21 @@
+=form_for @bank_account, class:"create-bank-account" do |f|
+  =hidden_field_tag :country, "US", data: {stripe: "country"}
+  =hidden_field_tag :currency, "USD", data: {stripe: "currency"}
+  .form-group.form-group-default.required
+    =label_tag "Name on Bank Account"
+    =text_field_tag :account_holder_name, nil, class:"form-control", placeholder:"Individual or Business Named on the account",data: {stripe: "account_holder_name"}, required: true
+  .form-group.form-group-default.required
+    =label_tag "Type of Account"
+    =select_tag :account_holder_type, options_for_select([["Individual", "individual"], ["Business","business"]]), class:"form-control",data: {stripe: "account_holder_type"}, required: true
+  .form-group.form-group-default.required
+    =label_tag "Bank Account Number"
+    =text_field_tag :account_number, nil, class:"form-control", placeholder:"Enter Your Bank Account Number..",data: {stripe: "account_number"}, required: true
+  .form-group.form-group-default.required
+    =label_tag "Routing Number"
+    =text_field_tag :routing_number, nil, class:"form-control", placeholder:"Enter Your Routing Number..",data: {stripe: "routing_number"}, required: true
+  .form-group.form-group-default
+    =label_tag "License #"
+    =f.text_field :license_number, {class:"form-control", placeholder:"Enter Your License #..", required: false}
+  .actions.pull-right
+    =f.submit "Add Payment Option", class: "btn btn-primary"
+.clearfix

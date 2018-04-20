@@ -1,0 +1,24 @@
+<% if @response %>
+entryComplete();
+setTimeout(function() {
+    $('#patientForm').modal('toggle');
+}, 1000);
+
+<% if @appointment.status == "confirmed" %>
+$('.success-poppin').html('Your appointment has been booked.  Confirmation is in your email.');
+$('.success-poppin').addClass('active');
+setTimeout(function(){
+$('.success-poppin').removeClass('active');},4000);
+<% elsif @appointment.status == "requested" %>
+$('.success-poppin').html('Your appointment has been requested.  You will receive communication via email when it is accepted.');
+$('.success-poppin').addClass('active');
+setTimeout(function(){
+$('.success-poppin').removeClass('active');},4000);
+<% end %>
+if (window.location.href.indexOf("appointments") > -1){
+$(location).attr('href', '/appointments');
+}
+<% else %>
+entryFail();
+
+<%end%>

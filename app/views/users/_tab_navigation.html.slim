@@ -1,0 +1,55 @@
+ul.nav.nav-tabs.nav-tabs-linetriangle.nav-tabs-separator.nav-stack-sm
+  -if current_user? @user
+    li class="active"
+      a data-toggle="tab" href="#user_info"
+        i.fa.fa-user.tab-icon
+          span &nbsp PATIENT INFORMATION
+
+  -if current_user? @user
+    li class="#{(@auth || @user.doctors.length != 0) ? "" : "active"}"
+      a data-toggle="tab" href="#billing_info"
+        i.fa.fa-credit-card.tab-icon
+          span &nbsp BILLING INFORMATION
+
+
+  -if @user.patients.length != 0 || (@user.patients.length == 0 && @user.doctors.length == 0)
+     /! li class="#{@auth ? "active" : ""}"
+     /   a data-toggle="tab" href="#calendar_sync"
+     /     i.fa.fa-calendar.tab-icon
+     /       span &nbsp Calendar Sync
+
+      
+        
+        
+  /!- if @user.patient?
+  - if current_user? @user
+    / li class="#{!current_user? @user ? "active" : ""}"
+    /   a data-toggle="tab" href="#session_notes"
+    /     i.fa.fa-check.tab-icon 
+    /       span &nbsp Session Notes
+
+    /li class="#{!current_user? @user ? "active" : ""}"
+    /  a data-toggle="tab" href="#payments"
+    /    i.fa.fa-check.tab-icon 
+    /      span &nbsp PAYMENTS
+
+    li class="#{!current_user? @user ? "active" : ""}"
+         a data-toggle="tab" href="#appointment_history"
+            i.fa.fa-check.tab-icon 
+              span &nbsp PAYMENTS
+
+          
+    li class="#{!current_user? @user ? "active" : ""}"
+      a data-toggle="tab" href="#documents"
+        i.fa.fa-check.tab-icon 
+          span &nbsp DOCUMENTS
+        
+        
+
+  -if @user.patients.length != 0 || (@user.patients.length == 0 && @user.doctors.length == 0)
+    / li 
+    /   a data-toggle="tab" href="#hours_rates"
+    /     i.fa.fa-clock-o.tab-icon
+    /      span &nbsp Office Hours and Rates          
+  
+  

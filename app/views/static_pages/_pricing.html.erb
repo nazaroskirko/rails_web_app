@@ -1,0 +1,48 @@
+<section id="pricing">
+  <div class="pricing-headline">
+    <p>14 Day Free Trial.  No Credit Card Required.</p>
+  </div>
+  <div class="pricing-tabs">
+
+    <ul class="pricing-nav">
+      <li class="current-pricing pricing-tab"><a href="javascript:void(0)">Standard</a></li>
+      <li class="pricing-tab"><a href="javascript:void(0)">Enterprise</a></li>
+    </ul>
+
+  </div>
+
+  <div class="pricing-tables">
+    <div id="Standard" class="pricing-table current-table">
+      <div class="half">
+        <h3 class="ticket"><span class="dollar">$</span>39<span>/month</span></h3>
+      </div>
+      <div class="half"><h5>Included Features:</h5>
+        <ul class="feature-list">
+          <li><i class="icon-ok"></i>Patient Notes</li>
+          <li><i class="icon-ok"></i>Scheduling</li>
+          <li><i class="icon-ok"></i>Communication</li>
+          <li><i class="icon-ok"></i>Billing</li>
+        </ul>
+        <%= link_to 'Start your trial', new_user_path, class: "btn btn-pricing" %>
+      </div>
+      <div class="row"></div>
+    </div>
+
+    <div id="Enterprise" class="pricing-table">
+      <div class="half">
+        <h3 class="ticket"><span class="dollar">$</span>129<span>/mo</span></h3>
+      </div>
+      <div class="half">
+        <h5>Included Features:</h5>
+        <ul class="feature-list">
+          <li><i class="icon-ok"></i>All standard features</li>
+          <li><i class="icon-ok"></i>Phone Support</li>
+          <li><i class="icon-ok"></i>Personal Assistance</li>
+          <li><i class="icon-ok"></i>Customization</li>
+        </ul>
+        <%= link_to 'Start your trial', new_user_path, class: "btn btn-pricing" %>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</section>

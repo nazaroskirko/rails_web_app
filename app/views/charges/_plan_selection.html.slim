@@ -1,0 +1,15 @@
+.col-md-5
+  .padding-30
+    h2 Plan Selection
+    p PatientNotes is FREE for patients
+    .small.hint-text Select a plan and add CC info.  Patients must enter a CC to be able to book appointments with their therapist.
+    table.table.table-condensed
+      = f.collection_radio_buttons :plan, Subscription::PLANS, :first, :second do |b|
+        tr class="#{b.value == current_user.subscription.plan ? "success" : ""}"
+          td.col-md-9
+              span.m-l-10.font-montserrat.fs-18.all-caps #{b.value}
+              span.m-l-10 #{b.text}
+          td.col-md-1.text-right
+            div.radio.radio-success 
+              =b.radio_button
+              =b.label {""}

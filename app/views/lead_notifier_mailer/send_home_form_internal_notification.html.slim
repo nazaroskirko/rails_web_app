@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
+  body
+    h1 We have a new lead!
+    p Here is the lead's information:
+    table
+      tr
+        td First Name:
+        td =@lead.first_name
+      tr
+        td Last Name:
+        td =@lead.last_name
+      tr
+        td email:
+        td =@lead.email
+      tr
+        td message:
+        td =@lead.inquiries.last.message
+      

@@ -1,0 +1,20 @@
+<div class="blog-posts">
+  <div class="container">
+    <% @posts.each_slice(3) do |posts| %>
+      <div class="row">
+        <% posts.each do |post| %>
+          <%= render :partial => 'post', :locals => {:post => post} %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination-links">
+    <% if @previous_page %>
+      <%= link_to "&laquo; Prev".html_safe, buttercms_blog_path(:page => @previous_page) %>
+    <% end %>
+
+    <% if @next_page %>
+      <%= link_to "Next &raquo;".html_safe, buttercms_blog_path(:page => @next_page) %>
+    <% end %>
+  </div>
+</div>

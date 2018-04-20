@@ -1,0 +1,8 @@
+h3 You have a new appointment!
+
+p Hey #{@doctor.first_name}, #{@patient.first_name} #{@patient.last_name} would like to schedule an appointment with you.  Here are the details:
+
+p Date: #{@appointment.date}
+p Start: #{@appointment.start}
+p End: #{@appointment.end}
+p Please =link_to "respond to the your patients request here", appointment_url(@appointment)

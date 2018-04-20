@@ -1,0 +1,40 @@
+=provide :class, "fixed-header no-header"
+=provide :title, "Calendar"
+=provide :style, "pages/css/calendar.css"
+= render 'layouts/side_nav'
+.page-container.bg-white.full-height
+  =render 'layouts/static_header'
+
+  .pull-up.overlayer.visible-sm.visible-xs
+    .p-l-5.p-t-15
+      button.btn-link.toggle-sidebar data-toggle="sidebar"
+        span.icon-set.menu-hambuger
+  .top-right.overlayer
+  .page-content-wrapper.full-height data-events="#{@events}"
+    .content.full-height
+      =render 'layouts/patient_modal'
+      #myCalendar.full-height
+        #calendar-event.quickview-wrapper.calendar-event
+          #eventFormController.view-port.clearfix
+            .view.bg-white
+              .scrollable
+                .p-l-30.p-r-30.p-t-20
+                  a.pg-close.text-master.link.pull-right data-toggle="quickview" data-toggle-element="#calendar-event" href="#"
+                  h4#event-date &amp;
+                  .m-b-20
+                    i.fa.fa-clock-o
+                    span#lblfromTime 
+                    | to
+                    span#lbltoTime
+                .p-t-15
+                  input id="eventIndex" name="eventIndex" type="hidden"
+                  .form-group-attached
+                    .form-group.form-group-default
+                      label Title
+                      input type="text" class="form-control" id="txtEventName" name="" placeholder="event name"        
+                    .row.clearfix
+                / .p-l-30.p-r-30.p-t-30
+                /   button id="eventSave" class="btn btn-warning btn-cons" Save Event
+                /   button id="eventDelete" class="btn btn-white"
+                /     i.fa.fa-trash-o
+= javascript_include_tag "js/calendar.js"

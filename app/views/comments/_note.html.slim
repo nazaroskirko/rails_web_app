@@ -1,0 +1,37 @@
+.well 
+  .card1
+    .card-header id="heading#{comment.id}" role="tab" 
+      a aria-controls="collapse#{comment.id}" aria-expanded="true" data-parent="#accordion" data-toggle="collapse" href="#collapse#{comment.id}"
+        =comment.content[:type]
+    .collapse id="collapse#{comment.id}" aria-labelledby="heading#{comment.id}" role="tabpanel"
+      .card-block
+        - if comment.content[:type] == 'Custom Note'
+          .custom-note
+            .form-group.form-group-default
+              = label :simple, "Additional Comments"
+              = text_area_tag :simple, comment.content[:simple], rows: 35, class:"form-control additional-details", required:true
+        - elsif comment.content[:type] == 'SOAP Note'
+          .soap-note
+            .form-group.form-group-default
+              = label :subjective_complaint, "Subjective Complaint"
+              = text_area_tag :subjective_complaint, comment.content[:subjective_complaint], rows: 15, class:"form-control additional-details"
+            .form-group.form-group-default
+              = label :objective_findings, "Objective Findings"
+              = text_area_tag :objective_findings, comment.content[:objective_findings], rows: 15, class:"form-control additional-details"
+            .form-group.form-group-default
+              = label :assessment_of_progress, "Assessment of Progress"
+              = text_area_tag :assessment_of_progress, comment.content[:assessment_of_progress], rows: 15, class:"form-control additional-details"
+            .form-group.form-group-default
+              = label :plans_of_next_session, "Plans of Next Session"
+              = text_area_tag :plans_of_next_session, comment.content[:plans_of_next_session], rows: 15, class:"form-control additional-details"
+        - else
+          .dap-note
+            .form-group.form-group-default
+              = label :data, "Data"
+              = text_area_tag :data, comment.content[:data], rows: 15, class:"form-control additional-details"
+            .form-group.form-group-default
+              = label :assessment_and_response, "Assessment and Response"
+              = text_area_tag :assessment_and_response, comment.content[:assessment_and_response], rows: 15, class:"form-control additional-details"
+            .form-group.form-group-default
+              = label :plan, "Plan"
+              = text_area_tag :plan, comment.content[:plan], rows: 15, class:"form-control additional-details"

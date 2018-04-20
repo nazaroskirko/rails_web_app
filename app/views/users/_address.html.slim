@@ -1,0 +1,27 @@
+.form-group-attached
+  .row.clearfix.full-margin
+    .col-sm-2
+      .form-group.form-group-default.required
+        =ff.label :number, "Street #"
+        =ff.text_field :number, class:"form-control", placeholder:"Street #", required: true, disabled: !current_user?(@user)
+    .col-sm-8
+      .form-group.form-group-default.required
+        =ff.label :street, "Street Name"
+        =ff.text_field :street, class:"form-control", placeholder:"Street Name", required: true, disabled: !current_user?(@user)
+    .col-sm-2
+      .form-group.form-group-default
+        =ff.label :apartment, "Apt #"
+        =ff.text_field :apartment, class:"form-control", placeholder:"Apt #", disabled: !current_user?(@user)
+  .row.clearfix.full-margin
+    .col-sm-6
+      .form-group.form-group-default
+        =ff.label :city, "City"
+        =ff.text_field :city, class:"form-control", placeholder:"City", disabled: !current_user?(@user)
+    .col-sm-2
+      .form-group.form-group-default.form-group-default-select2.user-select
+        =ff.label :state, "State"
+        =ff.select :state, options_for_select(Address::STATES, @address.state), {},{class:"cs-select cs-skin-slide cs-transparent", disabled: !current_user?(@user), data: {"init-plugin": "select2"}}
+    .col-sm-4
+      .form-group.form-group-default
+        =ff.label :zip, "Zip Code"
+        =ff.text_field :zip, class:"form-control zip", placeholder: "Zip Code", disabled: !current_user?(@user)

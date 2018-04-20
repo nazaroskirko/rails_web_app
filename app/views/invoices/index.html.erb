@@ -1,0 +1,109 @@
+<%= provide :class, "fixed-header" %>
+<%= render 'layouts/side_nav' %>
+    <!-- START PAGE-CONTAINER -->
+    <div class="page-container ">
+      <!-- START HEADER -->
+      <%= render 'layouts/static_header' %>
+      <!-- START PAGE CONTENT WRAPPER -->
+      <div class="page-content-wrapper ">
+        <!-- START PAGE CONTENT -->
+        <div class="content ">
+          <div class="modal fade slide-right in" id="modalSlideLeft" tabindex="-1" role="dialog" aria-hidden="true" >
+<div class="modal-dialog modal-sm">
+<div class="modal-content-wrapper">
+<div class="modal-content">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+</button>
+<div class="container-xs-height full-height">
+<div class="row-xs-height">
+<div class="modal-body col-xs-height col-middle text-center   ">
+<h5 class="text-primary ">Before you <span class="semi-bold">proceed</span>, you have to login to make the necessary changes</h5>
+<br>
+<button type="button" class="btn btn-primary btn-block" data-dismiss="modal">Continue</button>
+<button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+          <!-- START CONTAINER FLUID -->
+          <div class="container-fluid container-fixed-lg bg-white">
+
+<div class="panel panel-transparent">
+<div class="panel-heading">
+<div class="panel-title">Invoice History
+  <div class="pull-right">
+    <div class="pull-right">
+    <button class="btn m-b-20 m-l-20" data-target="#modalSlideLeft" data-toggle="modal">
+      <i class="fa fa-plus"></i> Add New
+    </button>
+    </div>
+    <!--<div class="col-xs-12">
+      <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+    </div> -->
+
+  </div>
+</div>
+</div>
+<div class="panel-body">
+<div class="table-responsive">
+<div id="detailedTable_wrapper" class="dataTables_wrapper form-inline no-footer"><table class="table table-hover table-condensed table-detailed dataTable no-footer" id="detailedTable" role="grid">
+<thead>
+<tr role="row"><th style="width:25%" rowspan="1" colspan="1">Patient</th><th style="width: 165px;"  rowspan="1" colspan="1">Status</th><th style="width: 165px;" rowspan="1" colspan="1">Amount</th><th style="width: 165px;" rowspan="1" colspan="1">Due Date</th></tr>
+</thead>
+<tbody>
+
+
+
+
+<tr role="row" class="odd">
+<td class="v-align-middle semi-bold">Patient 1</td>
+<td class="v-align-middle">Paid</td>
+<td class="v-align-middle semi-bold">$400</td>
+<td class="v-align-middle">July 13, 2016</td>
+</tr><tr role="row" class="even">
+<td class="v-align-middle semi-bold">Patient 2</td>
+<td class="v-align-middle">Unpaid</td>
+<td class="v-align-middle semi-bold">$700</td>
+<td class="v-align-middle">August 13, 2016</td>
+</tr><tr role="row" class="odd">
+<td class="v-align-middle semi-bold">Patient 3</td>
+<td class="v-align-middle">Paid</td>
+<td class="v-align-middle semi-bold">2000</td>
+<td class="v-align-middle">Sept 13, 2016</td>
+</tr><tr role="row" class="even">
+<td class="v-align-middle semi-bold">Patient 4</td>
+<td class="v-align-middle">Unpaid</td>
+<td class="v-align-middle semi-bold">900</td>
+<td class="v-align-middle">Oct 13, 2016</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->
+<!-- START CONTAINER FLUID -->
+
+</div>
+<!-- END PAGE CONTENT -->
+<!-- START COPYRIGHT -->
+<!-- START CONTAINER FLUID -->
+<!-- START CONTAINER FLUID -->
+<%= render 'layouts/static_footer' %>
+<!-- END COPYRIGHT -->
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+</div>
+<!-- END PAGE CONTAINER -->

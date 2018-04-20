@@ -1,0 +1,23 @@
+=form_for practice, remote: true, html:{class:"short-form"} do |f|
+  .form-group.form-group-default
+    =f.label :name, "Practice Name"
+    =f.text_field :name
+  .col-xs-3.url
+      |https://www.patientnotes.co/practices/
+  .col-xs-9
+    .form-group.form-group-default
+      =f.label :slug, "Site url"
+      =f.text_field :slug, disabled: true
+  .form-group
+    =f.submit "#{practice.slug ? 'Update Portal' : 'Create Portal'}", class:"btn btn-primary"
+    
+javascript:
+  var practice;
+  var slug;
+  practice = document.getElementById('practice_name');
+  slug = document.getElementById('practice_slug');
+  practice.addEventListener("keyup", function(){
+    
+    slug.value = practice.value.split(' ').join('-').toLowerCase();
+  });
+    

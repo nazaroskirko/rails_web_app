@@ -1,0 +1,42 @@
+.col-md-12
+  H1 Personal Information
+  =form_for [@user,@profile] , role:"form", remote: true do |f|
+    p 
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-4
+          .form-group.form-group-default.required
+            =f.label :dob, "Birthday"
+            =f.date_field :dob, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-4
+          .form-group.form-group-default.required
+            =f.label :sex, "Sex"
+            =f.text_field :sex, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-4
+          .form-group.form-group-default.required
+            =f.label :phone, "Telephone"
+            =f.telephone_field :phone, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :primary_physician, "Primary Physician"
+            =f.text_field :primary_physician, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :primary_physician_phone, "Primary Physician Phone"
+            =f.text_field :primary_physician, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :current_therapist, "Therapist"
+              =f.text_field :current_therapist, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :current_therapist, "Therapist Phone"
+              =f.text_field :therapist_phone, class:"form-control", disabled: !current_user?(@user)
+    br
+    .row.clearfix.full-margin
+    -if current_user?(@user)
+      =f.submit "Save Changes", class:"btn btn-primary block full-width personal-submit" 

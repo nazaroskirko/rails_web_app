@@ -1,0 +1,9 @@
+.patient-search.active
+  h5.text-primary Let's start by trying to find your patient (they might already use Patient Notes). Enter your patient's email address below - we'll need this to find them or send them an invitation.
+  hr
+  form#patient-search.short-form data-remote=true
+    .form-group.form-group-default
+      =label_tag "search", "New Patient's Email"
+      =text_field_tag "search", nil, placeholder:"Enter patient's email address..."
+    .form-group
+      button.btn.btn-primary.block.full.search Add Patient

@@ -1,0 +1,39 @@
+#calendar_sync.tab-pane.slide-left.padding-20 class="#{@auth ? "active" : ""}"
+  .row.row-same-height
+  .col-md-5
+    .padding-30
+      h2 Authorization
+      - if @sync_error
+          p Please reconnect your Google account.
+          =button_to "/auth/google_oauth2", id: "sign_in", class: "btn-lg btn-primary full m-t-30" do
+            i.fa.fa-google.p-r-10 
+            |Reconnect Account
+      - else
+        - if oauth_expiry < Time.now || @sync_error
+            p Before we sync your calendar, we need permission to access your account:
+            =button_to "/auth/google_oauth2", id: "sign_in", class: "btn-lg btn-primary full m-t-30" do
+              i.fa.fa-google.p-r-10 
+              |Sign in with Google
+        - else
+          .alert.alert-success
+            i.fa.fa-check-o
+            b Great!
+            | You have already synced your Google account!
+  .col-md-7
+    .padding-30
+      .bg-master-light.padding-30.b-rad-lg
+        h2.pull-left Connect Your Google Account and Select A Calendar
+        -if @calendar_list
+          =form_for @user, remote: true do |cl|
+            table.table.table-condensed#auto-check
+              =cl.collection_radio_buttons :google_calendar_id, @calendar_list, :first, :second, {checked: @calendar_list.first.first} do |bb|
+                tr class="#{bb.value == current_user.google_calendar_id ? "success" : ""}"
+                  td.col-md-9
+                      span.m-l-10.font-montserrat.fs-18.all-caps #{bb.text}
+                  td.col-md-3.text-right
+                    div.radio.radio-success 
+                      =bb.radio_button
+                      =bb.label { "" }
+            =cl.submit "Save and Sync Calendar", class:"btn btn-lg btn-lg pull-right"    
+        .clearfix
+          

@@ -1,0 +1,23 @@
+#user_info.tab-pane.padding-20.slide-left.active
+  .row.row-same-height
+    .col-md-12
+      .panel
+        =render 'users/intake_tabs'
+        .tab-content.info-panes
+          #general.tab-pane.active
+            .row.column-seperation
+              =render 'users/profile'
+          #personal.tab-pane
+            =render 'users/personal'
+          #medical.tab-pane
+            =render 'users/medical'
+          #complaints.tab-pane
+            =render 'users/complaints'
+          #family.tab-pane
+            =render 'users/family'
+          #substances.tab-pane
+            =render 'users/substance'
+          #development.tab-pane
+            =render 'users/development'
+          #additional.tab-pane
+            =render 'users/additional'

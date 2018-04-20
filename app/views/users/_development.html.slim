@@ -1,0 +1,102 @@
+.col-md-12
+  H1 Early Development
+  =form_for [@user,@profile] , role:"form", remote: true do |f|
+    p 
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :home_location, "Where did you grow up?"
+            =f.text_field :home_location, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :independence, "When did you become independend?"
+            =f.text_field :independence, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :move, "Where and how frequently did you move?"
+            =f.text_field :move, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :living_situation, "What is your current living situation?"
+            =f.text_field :living_situation, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :family_death, "List the time of any family deaths"
+            =f.text_field :family_death, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :suicide, "List the time of any family suicides"
+            =f.text_field :suicide, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-4
+            .form-group.form-group-default
+              =f.label :neglect, "Were you neglected"
+              =f.text_field :neglect, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-4
+            .form-group.form-group-default
+              =f.label :trauma, "Were you traumatized?"
+              =f.text_field :trauma, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-4
+            .form-group.form-group-default
+              =f.label :abuse, "Were you abused?"
+              =f.text_field :abuse, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :education, "What is your highest level of education?"
+              =f.text_field :family_death, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :work_status, "What is your work status?"
+              =f.text_field :work_status, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :education, "Do you have children?"
+              =f.text_field :family_death, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :work_status, "How old are they?"
+              =f.text_field :work_status, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-12
+            .form-group.form-group-default
+              =f.label :education, "What is your relationship with them?"
+              =f.text_field :family_death, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-4
+            .form-group.form-group-default
+              =f.label :rank, "What is your military rank?"
+              =f.text_field :rank, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-4
+            .form-group.form-group-default
+              =f.label :military_location, "Where did your serve?"
+              =f.text_field :military_location, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-4
+            .form-group.form-group-default
+              =f.label :military_dates, "What dates?"
+              =f.text_field :military_dates, class:"form-control", disabled: !current_user?(@user)
+      .form-group-attached
+        .row.clearfix.full-margin
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :arrested, "Have you been arrested?"
+              =f.text_field :arrested, class:"form-control", disabled: !current_user?(@user)
+          .col-sm-6
+            .form-group.form-group-default
+              =f.label :arrested_details, "Describe the situation?"
+              =f.text_field :arrested_details, class:"form-control", disabled: !current_user?(@user)
+    br
+    .row.clearfix.full-margin
+    -if current_user? @user
+      =f.submit "Save Changes", class:"btn btn-primary block full-width personal-submit" 

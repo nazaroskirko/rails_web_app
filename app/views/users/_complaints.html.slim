@@ -1,0 +1,18 @@
+#complaint.col-md-12
+  h1 Complaints and Symptoms
+  = form_for UserComplaint.new, multiple: true, remote: true do |f|
+    = f.collection_check_boxes :complaint_id, Complaint.all, :id, :name do |b|
+      .col-sm-3
+        .form-group
+          = b.label do
+            = b.check_box(data: {"init-plugin": "switchery", date: "", repeat: "false", date: "#{Date.today}"}, class: "m-r-10", disabled: !current_user?(@user))
+            = b.text
+    br
+    = f.submit "Add Complaints", class: "btn btn-primary complaints-submit"
+    br
+    .well.m-t-20 
+      h5 Previously reported symptoms
+      .row-fluid.complaint-list
+        - @complaints.each do |c| 
+          = "<button class='btn btn-default m-b-5 m-r-5'>#{c}</span>".html_safe
+       

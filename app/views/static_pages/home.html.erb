@@ -1,0 +1,243 @@
+<% provide(:title, "Home") %>
+<!-- Header section -->
+<header>
+	<div class="top-wrap">
+		<div class="row">
+			<div class="twelve columns">
+
+				<!-- Logo content -->
+				<div class="four columns logo">
+					<%= image_tag "logo.png", height: 60, width: 180 %>
+				</div>
+
+				<!-- Navmenu content -->
+				<div class="eight columns">
+					<ul class="top-nav">
+						<li class="current scroll"><a href="#top">Home</a></li>
+						<li class="scroll"><a href="#team">Mission</a></li>
+						<li class="scroll"><a href="#features">Features</a></li>
+						<li class="scroll"><a href="#pricing">Plans</a></li>
+						<li class="scroll"><%= link_to "Blog", blog_path, class: " offpage" %></li>
+
+						<li class="blank"><%= link_to "Login", login_path, class: "btn offpage" %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- Header section -->
+
+<!-- Slider section -->
+<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>"><%= value %></div>
+	<% end %>
+<section id="top">
+	<div class="row">
+		<div class="twelve columns">
+			<div class="space90"></div>
+
+			<!-- Slider content -->
+			<div class="six columns">
+				<div id="main-slider" class="flexslider">
+					<ul class="slides">
+						<li><%= image_tag "grey_comp.png" %></li>
+						<!--<li><<%= image_tag "demo/slide/2.png" %></li>-->
+					</ul>
+				</div>
+			</div>
+
+			<!-- Content right -->
+			<div class="six columns top-info">
+				<h3><%= @content.homepage_headline %></h3>
+				<%= @content.homepage_paragraph.html_safe %>
+				<div class="space50"></div>
+				<%= link_to raw("<em>#{@content.homepage_cta_text}</em>"), new_user_path, class: "btn" %>
+
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Slider section -->
+
+<!-- Features/services section -->
+<section id="team">
+	<div class="row">
+		<div class="twelve columns">
+			<h3 class="purple">Mission</h3>
+			<div class="row">
+				<div class="six columns"><h5>We Started With A Problem</h5><p>We built PatientNotes because the most efficient ways to manage a practice and communicate with your patients are constantly evolving, and so should you. If your software isn’t efficient for both you and your patients, your growth is limited. We  designed a platform that bridges the gap between efficient practice management and seamless communication.   </p></div>
+
+				<div class="six columns"><h5>Run Your Practice On Your Own Terms</h5><p>PatientNotes is a solution that will save you time and change the way you interact with your patients. Losing or trucking around notes, and asking patients for their credit card at the end of a session are things of the past.  Receive emails with daily updates on your practice and upcoming sessions, check in with your patients in between appointments, and automate all of your billing. Our goal is to improve the experience for patients by saving you time and making your job easier.</p>  </div>
+
+			</div>
+
+
+<!-- Social content -->
+		<!--	<div class="six columns team-content">
+
+				<h4>Daniel Meek</h4>
+				<h5>Founder</h5>
+
+
+
+			</div>
+
+			<div class="six columns team-content">
+
+				<h4>Colleen Breslin</h4>
+				<h5>Founder</h5> -->
+
+				<!-- Social content -->
+
+			</div>
+		</div>
+	</div>
+</section>
+<div class="row">
+<hr>
+</div>
+<section id="features">
+	<div class="row">
+		<div class="twelve columns">
+			<div class="four columns features-content">
+				<div class="ico" style="color:#999;"><i class="icon-inkpen"></i></div>
+				<div class="features-info">
+					<h4 class="purple">Patient Notes</h4>
+					<p>
+						Whether it's diagnosis or session notes, PatientNotes is your comprehensive, secure solution.</p>
+				</div>
+			</div>
+
+			<div class="four columns features-content">
+				<div class="ico" style="color:#999;"><i class="icon-invoice"></i></div>
+				<div class="features-info">
+					<h4 class="purple">Electronic Billing</h4>
+					<p>Submit claims (EDI), accept credit cards, send invoices, and store patient billing information.</p>
+				</div>
+			</div>
+
+			<div class="four columns features-content">
+				<div class="ico" style="color:#999;"><i class="icon-mobile"></i></div>
+				<div class="features-info">
+					<h4 class="purple">Seamless Communication</h4>
+					<p>Automated text, email, and telephone communication to facilitate best patient care.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="twelve columns">
+			<div class="four columns features-content">
+				<div class="ico" style="color:#999;"><i class="icon-calendarthree"></i></div>
+				<div class="features-info">
+					<h4 class="purple">Scheduling</h4>
+					<p>Manage your appointments, personal schedule, and tasks all in one place!  Allow your patients to schedule online and receive automatic appointment reminders.</p>
+				</div>
+			</div>
+
+			<div class="four columns features-content">
+				<div class="ico" style="color:#999;"><i class="icon-lock"></i></div>
+				<div class="features-info">
+					<h4 class="purple">Security & compliance</h4>
+					<p>HIPAA, Insurance, and PCI Compliant, so whether it's your personal information, your patient's notes or billing information, you can be confident it's secure.</p>
+				</div>
+			</div>
+
+			<div class="four columns features-content">
+				<div class="ico" style="color:#999;"><i class="icon-phonebookalt"></i></div>
+				<div class="features-info">
+					<h4 class="purple">Patient Portal</h4>
+					<p>Allow your patients to schedule appointments and update billing and insurance information.  Customizable permission controls allow you to limit which patients are able to schedule.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Features/services section -->
+<section id="pricing">
+  <div class="pricing-headline">
+    <p>14 Day Free Trial.  No Credit Card Required.</p>
+  </div>
+  <div class="pricing-tabs">
+
+    <ul class="pricing-nav">
+      <li class="current-pricing pricing-tab"><a href="javascript:void(0)">Standard</a></li>
+      <li class="pricing-tab"><a href="javascript:void(0)">Enterprise</a></li>
+    </ul>
+
+  </div>
+
+  <div class="pricing-tables">
+    <div id="Standard" class="pricing-table current-table">
+      <div class="half">
+        <h3 class="ticket"><span class="dollar">$</span>39<span>/month</span></h3>
+      </div>
+      <div class="half"><h5>Included Features:</h5>
+        <ul class="feature-list">
+        	<% @content.standard_features.each do |f| %>
+          <li><i class="icon-ok"></i><%= f.name %></li>
+          <% end %>
+        </ul>
+        <%= link_to 'Start your trial', new_user_path, class: "btn btn-pricing" %>
+      </div>
+      <div class="row"></div>
+    </div>
+
+    <div id="Enterprise" class="pricing-table">
+      <div class="half">
+        <h3 class="ticket"><span class="dollar">$</span>129<span>/mo</span></h3>
+      </div>
+      <div class="half">
+        <h5>Included Features:</h5>
+        <ul class="feature-list">
+        	<% @content.enterprise_features.each do |f| %>
+          <li><i class="icon-ok"></i><%= f.name %></li>
+          <% end %>
+        </ul>
+        <%= link_to 'Start your trial', new_user_path, class: "btn btn-pricing" %>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</section>
+<% render 'static_pages/video' %>
+
+<!-- Team section -->
+
+<!-- Team section -->
+
+<% render "static_pages/testimonials" %>
+
+<!-- Contact section -->
+<%= render "leads/basic_form", lead: @lead, inquiry: @inquiry %>
+<!-- Contact section -->
+
+<!-- Footer section -->
+<footer class="footer">
+	<div class="row">
+		<div class="twelve columns footer-inner">
+			<p>&copy; 2016. Patient Notes. All Rights Reserved.</p>
+		</div>
+	</div>
+</footer>
+<div class="container">
+<%= debug(params) if Rails.env.development? %>
+</div>
+<!-- Footer section -->
+<!-- <script type="text/javascript">
+
+(function(h,o,t,j,a,r){
+		 h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+		 h._hjSettings={hjid:391457,hjsv:5};
+		 a=o.getElementsByTagName('head')[0];
+		 r=o.createElement('script');r.async=1;
+		 r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+		 a.appendChild(r);
+ })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+ console.log('hotJar');
+
+ window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("2402286356");
+			console.log('heap');
+
+</script> -->

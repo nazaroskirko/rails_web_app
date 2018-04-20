@@ -1,0 +1,21 @@
+.email-composer.container-fluid
+  .row
+    .col-sm-12.no-padding
+      .wysiwyg5-wrapper.email-toolbar-wrapper
+        = form_tag conversations_path, method: :post do
+          .form-group-attached
+            .row.clearfix
+              .col-sm-12
+                .form-group.form-group-default
+                  label To:
+                  =select_tag :user_id, content_tag(:option,'Pick a recipient...',:value=>"")+options_from_collection_for_select(@recipients, :id, :name), class:"form-control tagsinput", data: {role: "tagsinput"}
+              
+            .form-group.form-group-default
+              label Subject
+              =text_field_tag :subject,nil, class:"form-control",placeholder: "Subject"
+          
+          wysiwyg5-wrapper.email-body-wrapper
+            =text_area_tag :body,nil, class:"wysiwyg5 email-body", style:"height:350px", placeholder:"Enter your message here..."
+          .row.p-b-20
+            .col-sm-11
+            =submit_tag "Send", class:"button btn btn-complete btn-cons m-l-10 new-message"

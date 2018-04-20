@@ -1,0 +1,44 @@
+<% if @user %>
+  $("#relationship_patient_id").val('<%= @user.id %>');
+  <% if @request %>
+    <% if @request.status == "doctor_requested" || @request.status == "doctor_cancelled" || @request.status == "patient_cancelled" %>
+      $('.reconfirm-relationship').addClass('active');
+      $('.name').html('<%=@user.first_name %> <%=@user.last_name %>');
+      $(".confirmation-button").html("<%= j render(partial: 'relationships/confirmation_request_form', locals: {relationship: @request} ) %>").hide().fadeIn(1500);
+      $("#relationship_status").val("doctor_requested");
+    <% elsif @request.status == "patient_requested" %>
+      $('.confirm-relationship').addClass('active');
+    <% elsif @request.status == "confirmed" %>
+            entryComplete();
+            setTimeout(function() {
+              $('#patientForm').modal('toggle');
+            }, 500);
+            $('#search-table').val('<%=@user.first_name %> <%=@user.last_name %>');
+            $('#search-table').keyup();
+            $('.success-poppin').html('This patient is already monitored by your practice.');
+            $('.success-poppin').addClass('active');
+            setTimeout(function(){
+            $('.success-poppin').removeClass('active');},4000);
+    <% end %>
+  <% else %>
+    $('.patient-form').toggleClass('waiting');
+    $("#relationship_patient_id").val('<%= @user.id %>');
+    $("#patient_first_name").val('<%= @user.first_name %>');
+    $("#patient_last_name").val('<%= @user.last_name %>');
+    $("#patient_email").val('<%= @user.email %>');
+    $("#email-success").addClass('active');
+
+  <% end %>
+
+
+
+
+
+
+
+<% else %>
+$('.new-invite').toggleClass('waiting');
+$("#invitation_recipient_email").val('<%= @email %>');
+$('#email-failure').addClass('active');
+
+<% end %>

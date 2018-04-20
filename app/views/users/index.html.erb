@@ -1,0 +1,43 @@
+<%= provide :class, "fixed-header" %>
+<%= render "layouts/side_nav" %>
+    <!-- START PAGE-CONTAINER -->
+    <div class="page-container ">
+      <!-- START HEADER -->
+<%= render "layouts/static_header" %>
+      <!-- START PAGE CONTENT WRAPPER -->
+      <div class="page-content-wrapper ">
+        <!-- START PAGE CONTENT -->
+        <div class="content ">
+          <h2 class="p-l-30 p-t-30">Our Community</h2>
+          <!-- START CONTAINER FLUID -->
+          <div class="container-fluid container-fixed-lg bg-white">
+            <!-- START PANEL -->
+            <div class="row">
+            <%= render "card" %><%= render "card" %><%= render "card" %><%= render "card" %>
+          </div>
+          <div class="row">
+          <%= render "card" %><%= render "card" %><%= render "card" %><%= render "card" %>
+        </div>
+        <div class="row">
+        <%= render "card" %><%= render "card" %><%= render "card" %><%= render "card" %>
+      </div>
+      <div class="row">
+      <%= render "card" %><%= render "card" %><%= render "card" %><%= render "card" %>
+    </div>
+
+            <!-- END PANEL -->
+          </div>
+          <!-- END CONTAINER FLUID -->
+          <!-- START CONTAINER FLUID -->
+
+        </div>
+        <!-- END PAGE CONTENT -->
+        <!-- START COPYRIGHT -->
+        <!-- START CONTAINER FLUID -->
+        <!-- START CONTAINER FLUID -->
+        <%= render "layouts/static_footer" %>
+        <!-- END COPYRIGHT -->
+      </div>
+      <!-- END PAGE CONTENT WRAPPER -->
+    </div>
+    <!-- END PAGE CONTAINER -->

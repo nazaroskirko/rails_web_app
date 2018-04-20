@@ -1,0 +1,90 @@
+Stripe.setPublishableKey("pk_live_jKdRpmVtJjeapVh5tQWV0ZDH");
+
+
+
+submitPayment = (form) ->
+  form.find('.submit').prop('disabled', true)
+  Stripe.card.createToken(form, stripeResponse)
+  return false
+
+$('#payment-form').on 'submit', ->
+  unless $('#appointment_type_Consultation').prop('checked')
+    submitPayment($('#payment-form'))
+
+stripeResponse = (status, response) ->
+  form = $('#payment-form')
+  if response.error
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('.submit').prop('disabled', false)
+  else
+    token = response.id
+    form.append($('<input type="hidden" name="stripeToken">').val(token))
+    $('[data-stripe=number]').remove()
+    $('[data-stripe=cvv]').remove()
+    $('[data-stripe=exp-year]').remove()
+    $('[data-stripe=exp-month]').remove()
+    form.get(0).submit()
+
+
+jQuery ($) ->
+  show_error = undefined
+  stripeResponseHandler = undefined
+  stripeBankResponseHandler = undefined
+  $('.edit_subscription').submit (event) ->
+    $form = undefined
+    $form = $(this)
+    $form.find('input[type=submit]').prop 'disabled', true
+    Stripe.card.createToken $form, stripeResponseHandler
+    false
+
+  $('.edit_bank_account').submit (event) ->
+    $form = undefined
+    $form = $(this)
+    $form.find('input[type=submit]').prop 'disabled', true
+    Stripe.bankAccount.createToken $form, stripeBankResponseHandler
+    false
+
+  stripeBankResponseHandler = (status, response) ->
+    $form = undefined
+    token = undefined
+    $form = $('.edit_bank_account')
+    if response.error
+      show_error response.error.message
+      $form.find('input[type=submit]').prop 'disabled', false
+    else
+      token = response.id
+      $form.append $('<input type="hidden" name="bank_account[stripe_token]" />').val(token)
+      $('[data-stripe=account_holder_name]').remove()
+      $('[data-stripe=account_holder_type]').remove()
+      $('[data-stripe=account_number]').remove()
+      $('[data-stripe=routing_number]').remove()
+      $form.get(0).submit()
+    false
+
+  stripeResponseHandler = (status, response) ->
+    $form = undefined
+    token = undefined
+    $form = $('.edit_subscription')
+    if response.error
+      show_error response.error.message
+      $form.find('input[type=submit]').prop 'disabled', false
+    else
+      token = response.id
+      $form.append $('<input type="hidden" name="subscription[stripe_token]" />').val(token)
+      $('[data-stripe=number]').remove()
+      $('[data-stripe=cvv]').remove()
+      $('[data-stripe=exp-year]').remove()
+      $('[data-stripe=exp-month]').remove()
+      $form.get(0).submit()
+    false
+
+
+
+
+
+  show_error = (message) ->
+    $('#flash-messages').html '<div class="alert alert-warning"><a class="close" data-dismiss="alert">×</a><div id="flash_alert">' + message + '</div></div>'
+    $('.alert').delay(5000).fadeOut 3000
+    false
+
+  return

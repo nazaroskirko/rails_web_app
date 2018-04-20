@@ -1,0 +1,40 @@
+.email-composer.container-fluid
+  .row
+    .col-sm-12.no-padding
+      .wysiwyg5-wrapper.email-toolbar-wrapper
+        =form_for @message, remote: true do |f|
+          .form-group-attached
+            .row.clearfix
+              .col-sm-6
+                .form-group.form-group-default
+                  =f.label TO:
+                  
+                <input name="to" data-role="tagsinput" class="form-control tagsinput" type="text" value="John Smith" />
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group form-group-default">
+                <label>CC:</label>
+                <input type="text" class="form-control" name="cc" placeholder="Add Carbon Copy">
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-group-default">
+            <label>Subject</label>
+            <input type="text" class="form-control" name="subject">
+          </div>
+        </div>
+      </form>
+      <div class="wysiwyg5-wrapper email-body-wrapper">
+        <textarea class="wysiwyg email-body" style="height:350px"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row p-b-20">
+    <div class="col-sm-12">
+      <button class="btn btn-white btn-cons">Cancel</button>
+      <button class="btn btn-complete btn-cons m-l-10">Send</button>
+    </div>
+    
+  </div>
+</div>

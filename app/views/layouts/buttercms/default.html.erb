@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= content_for?(:html_title) ? "#{content_for(:html_title)} | Patient Notes Blog" : "Patient Notes" %></title>
+
+    <meta name="description" content="<%= content_for?(:meta_description) ? content_for(:meta_description) : "My Blog" %>">
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"   />
+    <meta charset="utf-8" />
+    
+    <meta name="robots" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content=""  />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= render "layouts/apple_specific" %>
+
+    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'blog' %>
+    <%= render "layouts/shim" %>
+  	<%= render "layouts/external_fonts" %>
+
+    <link rel="alternate" type="application/atom+xml" title="My Blog - Atom" href="<%= buttercms_blog_atom_path %>">
+    <link rel="alternate" type="application/rss+xml" title="My Blog - RSS" href="<%= buttercms_blog_rss_path %>">
+</head>
+<body>
+  <%= render 'buttercms/header' %>
+
+  <!-- START PAGE CONTENT WRAPPER -->
+  <div class="page-content-wrapper ">
+    <%= yield %>
+  </div>
+</body>
+</html>

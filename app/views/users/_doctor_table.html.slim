@@ -1,0 +1,24 @@
+.panel.panel-transparent
+  .panel-heading
+    .panel-title Therapists
+    .pull-right
+      / .pull-right
+      /   button.btn.m-b-15.m-r-15.new-patient data-target="#patientForm" data-toggle="modal"
+      /     i.fa.fa-plus
+      /     | Add New
+        
+      .col-xs-12
+        input#search-table.form-control.pull-right type="text" placeholder="Search"
+        
+
+    .clearfix
+  .panel-body
+    table#tableWithSearch.table.table-hover.demo-table-search
+      thead
+        tr
+          th First Name
+          th Last Name
+          th Add Appointment
+      tbody
+        -doctors.each do |doctor|
+          = render partial: 'doctor', locals: {doctor: doctor} 

@@ -1,0 +1,8 @@
+ul.nav.nav-tabs.nav-tabs-left.nav-tabs-simple
+  li.active
+    a data-toggle="tab" href="#account_info" Plan Selection
+  -if @user.patients.length != 0 || (@user.patients.length == 0 && @user.doctors.length == 0)
+    li
+      a data-toggle="tab" href="#bank_info" Payout Information
+    li 
+      a data-toggle="tab" href="#custom_billing" Custom Billing

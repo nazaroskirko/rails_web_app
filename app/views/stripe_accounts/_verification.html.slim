@@ -1,0 +1,23 @@
+-if @response[:transfers_enabled]
+  .alert.alert-success You are all set!  Your account information has been verified and you will receive deposits directly to your account 2 days after a client is charged.
+-else
+  -if @response[:verification][:due_by]
+    h3 You must update your account info before #{Time.at(@response[:verification][:due_by]).strftime('%B %-d')} to use PatientNotes billing
+
+  .col-md-8.col-md-offset-2
+    -if @missing_account_information.include? "legal_entity.type"
+      =form_tag stripe_update_path(@user) do
+        =render partial:"stripe_accounts/required_field", locals: {field: "legal_entity.type"}
+        .clearfix
+        =submit_tag
+        
+    -elsif @missing_account_information.include? "external_account"
+      =render partial:"users/bank_account"
+      
+    -else
+      =form_tag stripe_update_path(@user) do
+        -@missing_account_information.each do |mai|
+          -unless mai == "legal_entity.dob.month" || mai == "legal_entity.dob.year" || mai == "legal_entity.verification.document" || mai == "tos_acceptance.ip"
+            =render partial:"stripe_accounts/required_field", locals: {field: mai}
+            .clearfix
+        =submit_tag

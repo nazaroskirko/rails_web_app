@@ -1,0 +1,7 @@
+tr
+  td.v-align-middle =link_to doctor.first_name, user_path(doctor)
+  td.v-align-middle =link_to doctor.last_name, user_path(doctor)
+  td.v-align-middle.center 
+    button.btn.new-doctor-request.hidden data-target="#patientForm" data-toggle="modal" data-uid="#{doctor.id}"
+      i.fa.fa-plus 
+      |  Create Appointment

@@ -1,0 +1,56 @@
+=content_for :style, "practices"
+=content_for :javascript, 'practices'
+.row
+  .col-md-12.practice-name
+    h1 #{@practice.name.titleize}
+.row
+  .col-md-8.col-md-offset-2
+    h5.text-primary Request an appointment
+    =form_for @appointment, html: {class:"short-form", id:"payment-form"}, remote: true do |f|
+      .form-group.form-group-default
+        =label_tag :patient_name, "Full Name"
+        =text_field_tag :patient_name, nil, placeholder: "Enter Name", required: true
+        
+      .form-group.form-group-default
+        =label_tag :patient_email, "Email Address"
+        =text_field_tag :patient_email, nil, placeholder: "Enter Phone Number", required: true
+      
+      .form-group.form-group-default
+        =label_tag :patient_phone, "Phone Number"
+        =text_field_tag :patient_phone, nil, placeholder: "Enter Phone Number", required: true
+      
+      .form-group.form-group-default-select2.form-group-default
+        =f.label :doctor_id, "Doctor"
+        =f.select :doctor_id, options_from_collection_for_select(@doctors, 'id', 'name'), {}, {id: "doctor_ids", required:true}
+      .form-group.form-group-default
+        =f.label :date
+        =f.date_field :date, required:true
+      .form-group.form-group-default
+        =f.label :start, "Start Time"
+        =f.select :start, options_for_select(["",""]), {}, {id: "start_times", required:true}
+      table.table.table-condensed
+        tr
+          td.col-md-9
+              span.m-l-10.font-montserrat.fs-18.all-caps Free
+              span.m-l-10 Consultation - Free
+          td.col-md-3.text-right
+            / div.radio.radio-success 
+            =radio_button_tag "appointment_type", "Consultation", {},class: "appointmentRadio"
+              
+        tr
+          td.col-md-9
+              span.m-l-10.font-montserrat.fs-18.all-caps#billing-rate data-rate=" " Doctor Rate
+              span.m-l-10 Regular Appointment - 1 Hour
+          td.col-md-3.text-right
+            / div.radio.radio-success 
+            =radio_button_tag "appointment_type", "Regular Appointment", {},class: "appointmentRadio"
+ 
+        =f.hidden_field :status, value: "guest_booking"
+      .credit-card
+        .payment-errors
+
+        = render partial: 'charges/card_info', locals: {f: f, external: true}
+      .form-group.consultation-button.hidden
+        =f.submit "Request Consultation", class:"btn btn-primary block full"
+    .sample
+  

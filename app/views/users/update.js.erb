@@ -1,0 +1,19 @@
+<% unless @verifcation %>
+$('.profile-submit').removeClass('active');
+$('.success-poppin').html("<b>Nicely done!</b> <%= flash[:success] || 'You have updated your profile!' %>")
+$('.success-poppin').addClass('active');
+setTimeout(function(){$('.success-poppin').removeClass('active');}, 4000)
+
+var edited = false;
+$('#general input').on("focusout", function(){
+  if(!edited) { $('.profile-submit').addClass('active');}
+  edited = true;
+});
+
+<% else %>
+alert("bank account added");
+$('.success-poppin').html('<b>Nicely done!</b>  You have added a bank account!')
+$('.success-poppin').addClass('active');
+setTimeout(function(){$('.success-poppin').removeClass('active');}, 4000)
+
+<% end %>

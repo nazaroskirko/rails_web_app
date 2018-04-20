@@ -1,0 +1,48 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<style media="screen">
+
+  textarea.note-codable {
+  display: none;
+  }
+
+  .note-editable {
+    height: 200px;
+    margin-top: 30px;
+    border: .5px solid black;
+  }
+
+</style>
+
+    <h1 class="p-l-20"><%= @user.name %></h1>
+    <hr>
+  <%= render 'layouts/notifications' %>
+  <%= render partial: 'users/tab_navigation'%>
+  <!-- Tab panes -->
+
+<div class="tab-content">
+    <%= render partial: 'appointments/appointment_history' %>
+    <% if @user.doctors.length != 0 %>
+      <%= render partial: 'users/documents' %>
+      <%= render partial: 'users/session_notes' %>
+      <%= render partial: 'users/user_info_tab'%>
+    <% end %>
+    <% if current_user? @user%>
+      <%= render partial: 'charges/billing_info' %>
+      <% if @user.patients.length != 0 || (@user.patients.length == 0 && @user.doctors.length == 0)%>
+      <%= render partial: 'users/calendar_sync' %>
+      <%= render partial: 'days/list' %>
+      <% end %>
+      <% end %>
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#summernote').summernote({
+      height: 300,
+      // focus: true
+    })
+  });
+
+</script>

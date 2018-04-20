@@ -1,0 +1,11 @@
+#phone-form  
+  h3.purple As it turns out, it will be a bit easier to contact you if we have your phone number as well...
+  .six.columns.middle-form
+    == form_for lead, id: "contactForm", remote: true do |f|
+      .inner
+        i.icon-useralt
+        = f.text_field :first_name, id: "first_name", placeholder: "First Name", required: true
+      .inner
+        i.icon-useralt
+        = f.phone_field :phone, id: "phone_number", placeholder: "(555) 555-5555", required: true
+      = f.submit id: "submit", name: "sendMessage", value: "Add phone to my (#{lead.first_name}'s) account"

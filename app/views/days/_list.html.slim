@@ -1,0 +1,56 @@
+-if @user.patients.length != 0 || (@user.patients.length == 0 && @user.doctors.length == 0)
+  #hours_rates.tab-pane.slide-left.padding-20
+    ul.nav.nav-tabs.nav-tabs-left.nav-tabs-simple
+      li.active
+        a data-toggle="tab" href="#office_hours" Office Hours
+      li
+        a data-toggle="tab" href="#rate_info" Billing Rate  
+    .tab-content.info-panes
+      #office_hours.tab-pane.active
+        .row.column-seperation
+          h1 Office Hours
+          hr
+          .new-day-form
+            =render partial: "days/new", locales: {day: Day.new}
+          hr
+          -unless @days.empty?
+            table.table-hover.table-condensed.dataTable.no-footer
+              thead
+                tr
+                  th Day or Date
+                  th Start
+                  th End
+                  th Status
+                  th Delete?
+              tbody
+                -@days.where("day_num IS NOT NULL").order(:day_num).each do |day|
+                  tr
+                    td = Date::DAYNAMES[day.day_num] if day.day_num
+                    td = day.start.strftime("%-I:%M %p") if day.start
+                    td = day.end.strftime("%-I:%M %p") if day.end
+                    td = day.open ? "Open" : "Closed"
+                    td = link_to "Delete", day, method: :delete, data: {confirm: "Are you sure?"}
+                -@days.where("date IS NOT NULL").order(:date).each do |day|
+                  tr
+                    td = day.date.strftime("%-b %-d, %y") if day.date
+                    td = day.start.strftime("%-I:%M %p") if day.start
+                    td = day.end.strftime("%-I:%M %p") if day.end
+                    td = day.open ? "Open" : "Closed"
+                    td = link_to "Delete", day, method: :delete, data: {confirm: "Are you sure?"}
+                    
+      #rate_info.tab-pane class="#{@nav ? "active" : ""}"
+        .row.column-seperation
+          h1 Billing Rate
+          hr
+          p 
+          |Please enter your hourly billing rate.  
+          br
+          b Note:&nbsp
+          |that we charge a 4% fee on all transactions to cover both the cost of payment processing and funds transfer to your bank.
+          br
+  
+          hr
+          =form_for @settings, remote: true do |f|
+            .form-group.form-group-default.required
+              =f.number_field :billing_rate, class:"form-control", placeholder:"Enter your billing rate...", required: true
+            =f.submit "Add your rate", class:"btn btn-primary"

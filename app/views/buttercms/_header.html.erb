@@ -1,0 +1,26 @@
+<header>
+	<div class="top-wrap">
+		<div class="row">
+			<div class="twelve columns">
+
+				<!-- Logo content -->
+				<div class="four columns logo">
+					<%= image_tag "logo.png", height: 60, width: 180 %>
+				</div>
+
+				<!-- Navmenu content -->
+				<div class="eight columns">
+					<ul class="top-nav no-local-scroll">
+						<li class="scroll "><a href="/#top" class="offpage">Home</a></li>
+						<li class="scroll"><a href="/#team" class="offpage">Mission</a></li>
+						<li class="scroll"><a href="/#features" class="offpage">Features</a></li>
+						<li class="scroll"><a href="/#pricing" class="offpage">Plans</a></li>
+						<li class="current scroll"><%= link_to "Blog", blog_path, class: " offpage" %></li>
+
+						<li class="blank"><%= link_to "Login", new_user_path, class: "btn offpage" %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

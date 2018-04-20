@@ -1,0 +1,12 @@
+<% if @lead.errors.any? %>
+    alert('Sorry, but you have to start over.  Something went wrong; you might want to even refresh your browser.');
+ <% else %>
+ alert('processing!!!');
+  $('#lead-contact').fadeOut();
+  $("#content-swap").html("<%= j render(partial: 'leads/phone_form', locals: {lead: @lead} ) %>").hide().fadeIn(1500);
+  <% if Rails.env.production? %>
+  analytics.identify({first_name: <%= @lead.first_name %>, last_name: <%= @lead.last_name %> , email: <%= @lead.email %>});
+  analytics.track('Inquiry Submitted', {message: <%= @lead.inquiries.last.message %>});
+  <% end %>
+
+  <% end %>

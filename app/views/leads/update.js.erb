@@ -1,0 +1,9 @@
+<% if @lead.errors.any? %>
+    alert('Sorry, but you have to start over.  Something went wrong; you might want to even refresh your browser.');
+ <% else %>
+  $('#phone-form').hide();
+  <% if Rails.env.production? %>
+  analytics.identify({phone: <%= @lead.phone %>});
+  <% end %>
+  $("#content-swap").html("<%= j render(partial: 'leads/inquiry_thank_you', locals: {lead: @lead} ) %>").hide().fadeIn(1500);;
+  <% end %>

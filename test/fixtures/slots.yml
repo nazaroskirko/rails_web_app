@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_id: 1
+  start_time: 2016-10-14 18:12:01
+  min_length: 2016-10-14 18:12:01
+  max_length: 2016-10-14 18:12:01
+
+two:
+  day_id: 1
+  start_time: 2016-10-14 18:12:01
+  min_length: 2016-10-14 18:12:01
+  max_length: 2016-10-14 18:12:01

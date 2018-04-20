@@ -1,0 +1,7 @@
+tr
+  td.v-align-middle =link_to patient.first_name, user_path(patient)
+  td.v-align-middle =link_to patient.last_name, user_path(patient)
+  td.v-align-middle.center 
+    button.btn.new-appointment data-target="#patientForm" data-toggle="modal" data-uid="#{patient.id}"
+      i.fa.fa-plus 
+      |  Create Appointment

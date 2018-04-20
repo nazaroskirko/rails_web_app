@@ -1,0 +1,22 @@
+= provide :class, "fixed-header"
+= render 'layouts/side_nav'
+.page-container
+  = render 'layouts/static_header'
+  .page-content-wrapper
+    .content
+      .container-fluid.container-fixed-lg.bg-white
+        =render partial: "layouts/notifications"
+        .panel.panel-transparent
+          .panel-heading
+            .panel-title Confirm Therapist
+            .clearfix
+          .panel-body
+            .col-md-8.col-md-offset-2.center
+              h1 Is Dr. #{@doctor.first_name} #{@doctor.last_name} your therapist?
+              br
+              br
+              .col-md-6
+                = button_to "Yes", {controller: "relationships", action: "patient_decision", status: "confirmed", relationship_token: @relationship.token}, method: :post, class:"btn btn-primary full"
+              .col-md-6
+                = button_to "No", {controller: "relationships", action: "patient_decision", status: "patient_cancelled", relationship_token: @relationship.token}, method: :post, class:"btn btn-secondary full",data: {confirm: "Are you sure?"}
+      = render 'layouts/static_footer'            

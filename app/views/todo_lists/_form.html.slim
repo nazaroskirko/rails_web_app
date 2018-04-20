@@ -1,0 +1,11 @@
+
+=form_for [current_user, list], remote: true do |f| 
+  .form-group
+    =f.text_field :title, id: "ajaxName", class: "todo form-animation", placeholder:"Name your list...", list:"todo-json"
+    datalist#todo-json
+      -current_user.todo_lists.each do |l|
+        option value="#{l.title}"
+  =f.fields_for :todo_items do |fields|
+    = render partial: "todo_items/form", locals: {f: fields}
+  .form-group
+    =f.submit "Update Task", class:"btn btn-primary block full"

@@ -1,0 +1,38 @@
+section#contact
+  #content-swap.row
+    #lead_contact.twelve.columns
+      h3.purple Have questions? Let's talk.
+      .eleven.columns.middle-form
+        - if lead.errors.any?
+          #error_explanation
+            h2 = pluralize lead.errors.count, "error"
+            ul
+            - lead.errors.full_messages.each do |msg|
+              li=msg
+        == form_for lead, id: "contactForm" do |f|
+          .inner
+            i.icon-useralt
+            = f.text_field :first_name, id: "first_name", placeholder: "First Name", required: true
+          .inner
+            i.icon-useralt
+            = f.text_field :last_name, id: "last_name", placeholder: "Last Name", required: true
+          .inner
+            i.icon-envelope
+            = f.email_field :email, id: "email", placeholder: "Email", required: true
+          .inner
+            i.icon-pencil
+            = f.fields_for :inquiries do |i|
+              = i.text_area :message, id: "inquiry", placeholder: "Drop us a note here...", rows: 5, required: true
+          = f.submit id: "submit", name: "sendMessage", value: "Send Message"
+        #sendingMessage.statusMessage
+          p Sending your message, please wait...
+        #successMessage.successmessage
+          p Thanks for sending your message.  We'll get back to you shortly
+            span.success-ico
+              i.icon-ok-circle
+        #failureMessage.errormessage
+          p There was a problem sending your message.  Please try again.
+            span.error-ico
+              i.icon-remove-circle
+        #incompleteMessage.statusMessage
+          p Please complete all the fields in the form

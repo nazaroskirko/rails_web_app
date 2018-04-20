@@ -1,0 +1,12 @@
+function successfulPatient(message){
+entryComplete();
+setTimeout(function() {
+    $('#patientForm').modal('toggle');
+}, 1000);
+$('.success-poppin').html(message);
+$('.success-poppin').addClass('active');
+setTimeout(function(){
+$('.success-poppin').removeClass('active');},4000);
+}
+
+successfulPatient('An notification has been sent to <%= @patient.first_name %> <%= @patient.last_name %>.  You will receive convirmation when <%= @patient.first_name %> has accepted your invitation.');

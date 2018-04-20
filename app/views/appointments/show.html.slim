@@ -1,0 +1,64 @@
+-provide :class, "fixed-header"
+=render 'layouts/side_nav'
+.page-container
+  =render 'layouts/static_header'
+  .page-content-wrapper
+    .content
+      .container-fluid.container-fixed-lg
+        h1.p-l-20 =@appointment.date.strftime("%m/%d/%Y")
+        hr
+        h5.p-l-20 Patient: #{@patient.name}
+        h5.p-l-20 Doctor: #{@doctor.name}
+        = render 'layouts/notifications'
+        .tab-content
+          .col-md-12
+            H2 Appointment Notes
+            =form_for [@appointment, Comment.new], role:"form", remote: true do |f|
+              p
+                b Add notes to recap this appointment.
+              .add_comment
+                
+                  =f.fields_for :content do |cf|
+                    / =cf.label :type, "Select Note Type : "
+                    =cf.select :type, [['Custom Note', 'Custom Note'], ['SOAP Note', 'SOAP Note'], ['DAP Note', 'DAP Note']], {prompt: "Select Type", include_blank: false, placeholder: "Month"}, {class:"cs-select cs-skin-slide", data: {"init-plugin": "cs-select"}}
+                    .collapse.in
+                      .custom-note style='display: none;'
+                        .form-group.form-group-default
+                          =cf.label :simple, "Additional Comments"
+                          =cf.text_area :simple, rows: 35, class:"form-control additional-details", required:true
+                      
+                      .soap-note style='display: none;'
+                        .form-group.form-group-default
+                          =cf.label :subjective_complaint, "Subjective Complaint"
+                          =cf.text_area :subjective_complaint, rows: 15, class:"form-control additional-details"
+                        .form-group.form-group-default
+                          =cf.label :objective_findings, "Objective Findings"
+                          =cf.text_area :objective_findings, rows: 15, class:"form-control additional-details"
+                        .form-group.form-group-default
+                          =cf.label :assessment_of_progress, "Assessment of Progress"
+                          =cf.text_area :assessment_of_progress, rows: 15, class:"form-control additional-details"
+                        .form-group.form-group-default
+                          =cf.label :plans_of_next_session, "Plans of Next Session"
+                          =cf.text_area :plans_of_next_session, rows: 15, class:"form-control additional-details"
+                      .dap-note style='display: none;'
+                        .form-group.form-group-default
+                          =cf.label :data, "Data"
+                          =cf.text_area :data, rows: 15, class:"form-control additional-details"
+                        .form-group.form-group-default
+                          =cf.label :assessment_and_response, "Assessment and Response"
+                          =cf.text_area :assessment_and_response, rows: 15, class:"form-control additional-details"
+                        .form-group.form-group-default
+                          =cf.label :plan, "Plan"
+                          =cf.text_area :plan, rows: 15, class:"form-control additional-details"
+              br
+              .row.clearfix.full-margin
+              =f.submit "Save Changes", class:"btn btn-primary block full-width comment-submit disabled"
+            br
+            .row.clearfix.full-margin.comments-section
+              #accordion aria-multiselectable="true" role="tablist"
+                -@comments.each do |c|  
+                  = render partial: 'comments/note', locals: { comment: c }
+                        
+
+- content_for :javascript do                  
+  = javascript_include_tag 'comments.js'

@@ -1,0 +1,33 @@
+@import appointments
+
+.info-panes
+  padding: 0 60px!important
+.user-select
+  .select2-arrow
+    padding-top: 0px
+.profile-submit, .complaints-submit
+  @extend .restore-button
+.switchery-default
+  margin-right: 10px
+.setting-link
+  cursor: pointer
+.account-activation, .account-details
+  height: 0px!important
+  line-height: 0px
+  &.active
+    min-height: 300px!important
+    overflow: display
+    line-height: 22px
+    @include transition(1s)
+    @include transition-timing-function(ease-in-out)
+.account-activation
+  overflow: hidden
+#day_date
+  border: none !important
+
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button 
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  margin: 0

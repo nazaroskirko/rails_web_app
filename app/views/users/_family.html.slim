@@ -1,0 +1,90 @@
+.col-md-12
+  H1 Family History
+  =form_for [@user,@profile] , role:"form", remote: true do |f|
+    p 
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-4
+          .form-group.form-group-default
+            =f.label :adopted, "Adopted"
+            =f.select :adopted, options_for_select([["Yes", "Yes"],["No", "No"]]), {class:"form-control", include_blank: "Select One", disabled: !current_user?(@user)}
+        .col-sm-4
+          .form-group.form-group-default
+            =f.label :adopted_age, "Age of Adoption"
+            =f.text_field :adopted_age, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-4
+          .form-group.form-group-default
+            =f.label :caretaker, "Primary Caretaker"
+            =f.telephone_field :caretaker, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :mother_rel, "Relatioship with Mother"
+            =f.text_area :mother_rel, class:"form-control", rows: 4, disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :father_rel, "Relatioship with Father"
+            =f.text_area :father_rel, class:"form-control", rows: 4, disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-12
+          .form-group.form-group-default
+            =f.label :siblings_and_ages, "Siblings and Ages"
+            =f.text_area :siblings_and_ages, class:"form-control", rows: 4, disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :married, "Married?"
+            =f.text_field :married, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :marriage_date, "Marriage Date"
+            =f.date_field :marriage_date, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :divorced, "Divorced?"
+            =f.text_field :divorced, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :divorced_date, "Divorced Date"
+            =f.date_field :divorced_date, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :remarry, "Remarried?"
+            =f.text_field :remarry, class:"form-control", disabled: !current_user?(@user)
+        .col-sm-6
+          .form-group.form-group-default
+            =f.label :remarry_age, "Marriage Date"
+            =f.text_field :remarry_age, class:"form-control", disabled: !current_user?(@user)
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-12
+          .form-group.form-group-default
+            =f.label :family_med, "Family Medical History"
+            =f.text_area :family_med, class:"form-control", rows: 4, disabled: !current_user?(@user)
+            
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-12
+          .form-group.form-group-default
+            =f.label :family_mental, "Family Mental Health History"
+            =f.text_area :family_mental, class:"form-control", rows: 4, disabled: !current_user?(@user)
+            
+    .form-group-attached
+      .row.clearfix.full-margin
+        .col-sm-12
+          .form-group.form-group-default
+            =f.label :family_treatments, "Family Health Treatments"
+            =f.text_area :family_treatments, class:"form-control", rows: 4, disabled: !current_user?(@user)         
+  
+    br
+    
+    .row.clearfix.full-margin
+    -if current_user? @user
+      =f.submit "Save Changes", class:"btn btn-primary block full-width personal-submit" 

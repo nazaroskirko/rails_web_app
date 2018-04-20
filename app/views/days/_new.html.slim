@@ -1,0 +1,30 @@
+p Pick a specific date or day of the week to set your rules.  Pick your opening and closing hours for that day.  You can have multiple open time periods for any day.  If you wish to be closed for a day, just checked closed.
+=form_for Day.new, remote: true do |f|
+  
+  .col-md-3
+    .form-group.form-group-default
+      =f.label :date, "Specific Date"
+      =f.date_field :date
+  .col-md-3
+    .form-group.form-group-default
+      =f.label :day_num, "Day of Week"
+      =f.select :day_num, options_for_select([["Monday", "1"], ["Tuesday", "2"], ["Wednesday", "3"], ["Thursday", "4"], ["Friday", "5"], ["Saturday", "6"], ["Sunday", "0"]]), {prompt: 'Pick a Day', id:"day_selection"}
+      
+  .col-md-3  
+    .form-group.form-group-default
+      =f.label :start, "Start Time"
+      =f.select :start, options_for_select(Appointment::TIMES), {prompt: 'Pick Start', id: "start_times"}
+  .col-md-3  
+    .form-group.form-group-default
+      =f.label :end, "End Time"
+      =f.select :end, options_for_select(Appointment::TIMES), {prompt: 'Pick End', id: "end_times"}
+  .clearfix
+  .col-md-6
+    .checkbox.check-success
+      =f.check_box :open, {id:"day_open"}, checked_value = "0", unchecked_value = "1"
+      =f.label :open, "We are closed for this entire day"
+  .col-md-6
+    =f.submit "Add rule", class:"btn btn-lg btn-primary full-width"
+  .clearfix
+  
+.clearfix

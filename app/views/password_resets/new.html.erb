@@ -1,0 +1,16 @@
+<% provide(:title, "Reset Password") %>
+<div class="register-container full-height sm-p-t-30">
+  <div class="container-sm-height full-height">
+    <div class="row row-sm-height">
+      <div class="col-sm-12 col-sm-height col-middle">
+
+      <div class="row">
+        <%= image_tag "logo.png", alt: "logo", class:"sign-up-logo" %>
+      </div>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= render 'form' %>
+      </div>
+    </div>
+  </div>

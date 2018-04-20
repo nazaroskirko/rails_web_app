@@ -1,0 +1,6 @@
+<h3>Invitation to Patient Notes</h3>
+
+<p>
+  Hey <%= @patient.first_name %>, <%= @doctor.first_name %> <%= @doctor.last_name %> would like to give you access to book appointments on PatientNotes.  Confirm that <%= @doctor.first_name %> <%= @doctor.last_name %> is your doctor by clicking the button below:
+</p>
+<p> <%= @confirmation_url %></p>

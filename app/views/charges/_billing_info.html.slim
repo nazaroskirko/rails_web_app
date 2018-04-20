@@ -1,0 +1,49 @@
+#billing_info.tab-pane.slide-left.padding-20 class="#{@auth ? "" : "active"}"
+  =render 'users/billing_tabs'
+  .tab-content.info-panes
+    #account_info.tab-pane class="#{@nav ? "" : "active"}"
+      .row.column-seperation
+        = form_for @subscription do |f|   
+          .row.row-same-height
+            =render partial: "charges/plan_selection", locals: {f: f}
+            .col-md-7
+              .padding-30
+                =render partial: "charges/card_info", locals: {f: f, exeternal: false}
+    -if @user.patients.length != 0 || (@user.patients.length == 0 && @user.doctors.length == 0)
+      #bank_info.tab-pane class="#{@nav ? "active" : ""}"
+        .row.column-seperation
+          h1 Payout Information
+          hr
+          - unless @user.stripe_id?
+            .account-activation.active
+              p If you would us to process and deliver payments directly to your bank account, just follow these few simple steps:
+              .col-sm-4
+                .form-group.form-group-default.form-group-default-select2.user-select.m-t-30
+                  =label_tag  "Country"
+                  =select_tag "Country", options_for_select(Address::COUNTRY_CODES, "US"),{class:"cs-select cs-transparent country-codes", data: {"init-plugin": "select2"}}
+              .col-sm-8
+                =button_to "/stripe/create", id: "sign_in", class: "btn-lg btn-primary full m-t-30", remote: true, params: {country: "US", user_id:current_user.id} do
+                  i.fa.fa-stripe.p-r-10 
+                  | Add Customized Billing
+            .clearfix
+            .account-details
+              p Great! You can now process payments!&nbsp&nbspBut you aren't done!&nbsp&nbsp Assuming you actually want your payments to end up in your account, there are a few more things you have to do:
+              .verification
+          -else 
+            .account-details.active
+              .verification  
+                =render 'stripe_accounts/verification'
+    #custom_billing.tab-pane
+      .row.column-separation
+        .billing-alert.hidden
+        h1 Custom Billing Portal
+        hr
+        p Set up a custom billing panel that you can embed into your website or direct customers to
+        -if @user.stripe_id
+          =render partial: 'practices/form', locals: {practice: @practice}
+        -else
+          .col-md-6.col-md-offset-3
+            .alert.alert-warning
+              |Complete the payout information on the previous tab to activate.
+      
+        

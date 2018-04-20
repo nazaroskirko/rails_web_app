@@ -1,0 +1,14 @@
+<div class="four columns">
+  <div class="post-preview">
+    <!-- Featured image -->
+    <%= image_tag(post.featured_image, width: '100%') if post.featured_image %>
+
+    <div class="content">
+      <!-- Post title -->
+      <h4><%= link_to post.title, buttercms_post_path(post.slug), :title => post.title %></h4>
+
+      <!-- Post author -->
+      by <%= "#{post.author.first_name} #{post.author.last_name}" %> • <%= Time.parse(post.published).strftime('%B %d, %Y') %>
+    </div>
+  </div>
+</div>

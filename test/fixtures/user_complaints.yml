@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  complaint_id: 1
+  start: 2016-10-17
+  end: 2016-10-17
+  repeat_experience: false
+
+two:
+  user_id: 1
+  complaint_id: 1
+  start: 2016-10-17
+  end: 2016-10-17
+  repeat_experience: false

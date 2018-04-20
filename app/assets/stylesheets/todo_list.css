@@ -1,0 +1,73 @@
+.todo {
+  line-height: 34px!important;
+  padding:10px!important;
+  width: 100%!important;
+  margin-bottom: 10px!important;
+
+}
+
+.todo-header { margin-bottom: 30px;}
+
+
+
+    @-webkit-keyframes completed-task {
+        0% {
+            background-color: #fff;
+            color: #B565A7;
+            opacity:1;
+        }
+        100% {
+            background-color: lightblue;
+            color: #fff
+        }
+    }
+
+    @-webkit-keyframes failed-task {
+        0% {
+            background-color: #fff;
+            color: #B565A7;
+            opacity:1;
+        }
+        100% {
+            background-color: #E8716A;
+            color: #fff
+        }
+    }
+
+    .completed-task {
+        -webkit-animation-name: completed-task;
+        -webkit-animation-duration: 900ms;
+        -webkit-animation-iteration-count: 2;
+        animation-direction:alternate;
+        -webkit-animation-timing-function: ease-in-out;
+    }
+
+    .failed-task {
+        -webkit-animation-name: failed-task;
+        -webkit-animation-duration: 900ms;
+        -webkit-animation-iteration-count: 2;
+        animation-direction:alternate;
+        -webkit-animation-timing-function: ease-in-out;
+    }
+
+    .nosee {
+      color: #fff;
+    }
+
+    tr:hover .nosee {
+      color: #5bc0de;
+    }
+
+    .missing {
+      display: none;
+      -webkit-transition: all 1;
+      transition: all 1s ease-in-out;
+}
+
+.m-top-10 {
+  margin-top: 10px;
+}
+
+.todo-item td {
+  vertical-align: middle !important;
+}

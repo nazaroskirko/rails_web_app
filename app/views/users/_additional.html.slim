@@ -1,0 +1,17 @@
+.col-md-12
+  H1 Additional Information
+  =form_for [@user, Comment.new], role:"form", remote: true do |f|
+    p 
+      b Add any additional information you may have
+    .col-sm-12
+      .form-group.form-group-default.additional-details.required
+        =f.label :content, "Additional Comments"
+        =f.text_area :content, rows: 15, class:"form-control additional-details", required:true, disabled: !current_user?(@user)
+    br
+    .row.clearfix.full-margin
+    -if current_user? @user
+      =f.submit "Save Changes", class:"btn btn-primary block full-width comment-submit" 
+  br
+  .row.clearfix.full-margin.comments-section
+      -@comments.each do |c|   
+        .well =c.content

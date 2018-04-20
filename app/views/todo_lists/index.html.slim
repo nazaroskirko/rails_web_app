@@ -1,0 +1,50 @@
+=provide :class, "fixed-header"
+= render 'layouts/side_nav'
+.page-container
+  = render 'layouts/static_header'
+  .page-content-wrapper
+    .content
+      =render "right_modal"
+      .container-fluid.container-fixed-lg.bg-white
+        .panel.panel-transparent
+          .panel-heading
+            .panel-title
+            .pull-right
+              .col-xs-12
+                input#search-table.form-control.pull-right type="text" placeholder="Search"
+            .check-message.alert.alert-success.m-top-10.missing Item updated!
+            .fail-message.alert.alert-danger.m-top-10.missing We couldn't save your change, please refresh your page
+            .btn-group.pull-right.m-b-10
+              button.btn.btn-default.new-todo.hidden type="button" data-target="#modalSlideLeft" data-toggle="modal" remote="true" Create new task
+            .clearfix    
+          .panel-body
+            .table-responsive
+              table#tableWithSearch.table.table-hover.demo-table-search
+                thead
+                  tr
+                    th style="width:1%"
+                    th style="width:20%" To&#45do List
+                    th style="width:20%" To&#45do Item
+                    th style="width:39%" Notes
+                    th style="width:15%" Due Date
+                    th style="width:5%" Edit
+                tbody
+                  -@items.each do |i|
+                    tr id="#{i.id}" class="todo-row"
+                      td.v-align-middle
+                        .checkbox
+                          = form_for [current_user, i.todo_list, i], remote: true do |f|
+                            = f.check_box :completed, id:"todo_item_completed_#{i.id}", class:"completed-checkbox"
+                            = f.label "completed_#{i.id}", "Completed", class:"nosee completed-checkbox"
+                      td.v-align-middle
+                        =@array_of_list_titles.detect{ |n, _| n == i.todo_list_id}[1]
+                      td.v-align-middle
+                        =i.title
+                      td.v-align-middle 
+                        =i.description
+                      td.v-align-middle
+                        =i.deadline.strftime("%b %d") if i.deadline
+                      td.v-align-middle
+                        button.btn.edit-todo data-target="#modalSlideLeft" data-toggle="modal" data-item-id='#{i.id}' data-url='/users/#{current_user.id}/todo_lists/#{i.todo_list_id}/todo_items/#{i.id}/edit'
+                          i.fa.fa-edit
+    = render 'layouts/static_footer'

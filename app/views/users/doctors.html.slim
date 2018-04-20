@@ -1,0 +1,11 @@
+= provide :class, "fixed-header"
+= render 'layouts/side_nav'
+.page-container
+  = render 'layouts/static_header'
+  .page-content-wrapper
+    .content
+      =render 'layouts/patient_modal'
+      .container-fluid.container-fixed-lg.bg-white
+        =render partial: "layouts/notifications"
+        =render partial: 'doctor_table', locals: {doctors: @doctors}
+      = render 'layouts/static_footer'  

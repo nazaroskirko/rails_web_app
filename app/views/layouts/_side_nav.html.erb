@@ -1,0 +1,136 @@
+<!-- BEGIN SIDEBPANEL-->
+<nav class="page-sidebar" data-pages="sidebar">
+
+  <!-- BEGIN SIDEBAR MENU HEADER-->
+  <div class="sidebar-header">
+    <!-- <%= image_tag "logo.png", alt: "logo", data: {src: image_path("logo.png"), "src-retina": image_path("logo.png")}, width: "156", height: "44", class: "side-logo" %> -->
+
+  </div>
+  <!-- END SIDEBAR MENU HEADER-->
+  <!-- START SIDEBAR MENU -->
+  <div class="sidebar-menu">
+    <!-- BEGIN SIDEBAR MENU ITEMS-->
+    <ul class="menu-items">
+      <!-- <li class="m-t-30 ">
+          <%= link_to raw('<span class="title">Dashboard</span><span class="details">12 New Updates</span>'), dashboard_path, class:"detailed", 'data-no-turbolink' => true %>
+        <span class="icon-thumbnail"><i class="pg-home"></i></span>
+      </li> -->
+
+      <% if !current_user.doctors.empty? %>
+          <li class="side-nav">
+            <%= link_to raw('<span class="title">Profile</span>'), user_path(current_user), 'data-no-turbolink' => true %>
+            <span class="icon-thumbnail">
+              <%= link_to raw('<i class="fa fa-user"></i>'), user_path(current_user), 'data-no-turbolink' => true %>
+            </span>
+          </li>
+      <% end %>
+
+      <% if !current_user.doctors.empty? %>
+          <li class="side-nav">
+            <%= link_to raw('<span class="title">Messages</span>'), messages_path, 'data-no-turbolink' => true %>
+            <span class="icon-thumbnail">
+              <%= link_to raw('<i class="pg-social"></i>'), messages_path, 'data-no-turbolink' => true %>
+            </span>
+          </li>
+      <% end %>
+
+
+      <% if !current_user.patients.empty? || (current_user.patients.empty? && current_user.doctors.empty?) %>
+        <li class="side-nav ">
+          <%= link_to raw('<span class="title">Calendar</span>'), appointments_path, 'data-no-turbolink' => true %>
+          <span class="icon-thumbnail">
+            <%= link_to raw('<i class="pg-calender"></i>'), appointments_path, 'data-no-turbolink' => true %>
+          </span>
+        </li>
+      <% end %>
+
+      <% if (!current_user.patients.empty? && current_user.doctors.empty?) %>
+        <li class="side-nav">
+            <%= link_to raw('<span class="title">Patients</span>'), user_path(current_user), 'data-no-turbolink' => true %>
+            <span class="icon-thumbnail">
+              <%= link_to raw('<i class="fa fa-user"></i>'), user_path(current_user), 'data-no-turbolink' => true %>
+            </span>
+        </li>
+      <% end %>
+
+      <% if (!current_user.patients.empty? && current_user.doctors.empty?) %>
+        <li class="side-nav">
+          <%= link_to raw('<span class="title">Payments</span>'), doctors_user_path(current_user), class: "title", 'data-no-turbolink' => true %>
+          <span class="icon-thumbnail">
+            <%= link_to raw('<i class="fa fa-credit-card"></i>'), doctors_user_path(current_user), class: "title", "data-no-turbolink" => true %>
+          </span>
+        </li>
+      <% end %>
+
+      <% if (!current_user.patients.empty? && current_user.doctors.empty?) %>
+        <li class="side-nav">
+          <%= link_to raw('<span class="title">Forms</span>'), user_todo_lists_path(current_user), 'data-no-turbolink' => true %>
+          <span class="icon-thumbnail">
+            <%= link_to raw('<i class="pg-unordered_list"></i>'), user_todo_lists_path(current_user), 'data-no-turbolink' => true %>
+          </span>
+        </li>
+      <% end %>
+
+      <% if !current_user.patients.empty? || (current_user.patients.empty? && current_user.doctors.empty?) %>
+        <li class="side-nav">
+          <%= link_to raw('<span class="title">Account</span>'), patients_user_path(current_user), class: "title", 'data-no-turbolink' => true %>
+          <span class="icon-thumbnail">
+            <%= link_to raw('<i class="fa fa-cog"></i>'), patients_user_path(current_user), class: "title", 'data-no-turbolink' => true %>
+          </span>
+        </li>
+      <% end %>
+
+      <!--
+      <li class="side-nav">
+        <%= link_to raw('<span class="title">Messages</span>'), messages_path, 'data-no-turbolink' => true %>
+        <span class="icon-thumbnail">
+          <%= link_to raw('<i class="pg-social"></i>'), messages_path, 'data-no-turbolink' => true %>
+        </span>
+      </li>
+
+      
+      <% unless current_user.doctors.empty? %>
+        <li class="side-nav">
+          <%= link_to raw('<span class="title">Doctors</span>'), doctors_user_path(current_user), class: "title", 'data-no-turbolink' => true %>
+          <span class="icon-thumbnail">
+            <%= link_to raw('<i class="fa fa-user-md"></i>'), doctors_user_path(current_user), class: "title", "data-no-turbolink" => true %>
+          </span>
+        </li>
+      <% end %>
+
+      <li class="side-nav">
+        <%= link_to raw('<span class="title">To Do</span>'), user_todo_lists_path(current_user), 'data-no-turbolink' => true %>
+        <span class="icon-thumbnail">
+          <%= link_to raw('<i class="pg-unordered_list"></i>'), user_todo_lists_path(current_user), 'data-no-turbolink' => true %>
+        </span>
+      </li>
+    -->
+      
+
+
+      <!-- <li class="">
+        <%= link_to raw('<span class="title">Billing</span>'), invoices_index_path, class: "title", 'data-no-turbolink' => true %>
+        <span class="icon-thumbnail"><i class="pg-credit_card"></i></span>
+      </li>
+
+      <li class="">
+        <%= link_to raw('<span class="title">Marketplace</span>'), resources_index_path, 'data-no-turbolink' => true %>
+        <span class="icon-thumbnail"><i class="pg-shopping_cart"></i></span>
+      </li>
+
+      <li class="">
+
+          <%= link_to raw('<span class="title">Community</span>'), users_path, 'data-no-turbolink' => true %>
+
+        <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
+      </li> -->
+
+
+
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <!-- END SIDEBAR MENU -->
+</nav>
+<!-- END SIDEBAR -->
+<!-- END SIDEBPANEL-->

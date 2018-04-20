@@ -1,0 +1,10 @@
+<%= javascript_include_tag 'application' %>
+<% if params[:controller] != "static_pages" %>
+  <%= javascript_include_tag 'backend' %>
+<% end %>
+
+<% if content_for? :javascript %>
+
+<%= yield(:javascript) %>
+
+<% end %>

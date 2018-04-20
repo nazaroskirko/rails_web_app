@@ -1,0 +1,37 @@
+<% if @response %>
+entryComplete();
+setTimeout(function() {
+    $('#modalSlideLeft').modal('toggle');
+}, 1000);
+
+$('#basicTable').DataTable().row( $('tr#<%= @item.id%>') ).remove().draw();
+
+
+$('#basicTable').DataTable().row.add( [
+            "<%= formatCheckBox @item.id %>",
+           "<%= @list.title%>",
+           "<%= @item.title%>",
+           "<%= formatDescription @item.description %>",
+           "<%= formatDeadline @item.deadline %>",
+           "<%= formatEditButton @list.id, @item.id %>"
+       ] ).draw( false );
+
+$('button#<%= @item.id%>').parents('tr').attr('id', "<%= @item.id%>");
+$('tr#<%= @item.id%>').children().addClass("v-align-middle");
+$('tr#<%= @item.id%>').addClass('todo-row');
+
+$( "tr#<%= @item.id%> .completed-checkbox" ).on( "change", function() {
+  $(this).closest("form").submit();
+});
+
+
+
+
+$('button#<%=@item.id%>').on('click', function() {
+    $.ajax({type: "Get",url: "<%= formatEditButton @list.id, @item.id, false %>" });
+});
+
+<% else %>
+entryFail();
+
+<%end%>

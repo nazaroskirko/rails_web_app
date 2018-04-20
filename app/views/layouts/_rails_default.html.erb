@@ -1,0 +1,11 @@
+<%= csrf_meta_tags %>
+<% if params[:controller] != "static_pages" %>
+  <%= stylesheet_link_tag 'backend', media: 'all' %>
+<% elsif params[:controller].include? "utter" %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+<% else %>
+<%= stylesheet_link_tag 'application', media: 'all' %>
+<% end %>
+<% if content_for? :style %>
+<%= stylesheet_link_tag yield(:style), media: 'all' %>
+<% end %>
